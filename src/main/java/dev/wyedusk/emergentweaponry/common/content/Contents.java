@@ -2,6 +2,7 @@ package dev.wyedusk.emergentweaponry.common.content;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionDataMerger;
 import net.minecraft.core.component.DataComponentType;
@@ -42,10 +43,16 @@ public class Contents {
                 Registries.ITEM,
                 TransformEvolutionData.CODEC
         ).merger(new TransformEvolutionDataMerger()).build();
+        public static final DataMapType<Item, TierPotentialData> TIER_POTENTIAL_DATA_MAP = DataMapType.builder(
+                ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "tier_potential"),
+                Registries.ITEM,
+                TierPotentialData.CODEC
+        ).build();
 
         @SubscribeEvent
         public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
             event.register(TRANSFORM_EVOLUTION_DATA_MAP);
+            event.register(TIER_POTENTIAL_DATA_MAP);
         }
     }
     // Creative Mode Tabs

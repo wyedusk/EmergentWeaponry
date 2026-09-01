@@ -11,6 +11,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A merger to try let Transformation Evolvable items have more items added to them without other datapacks
+ * completely overriding previous values.
+ * <p>
+ * I'm not even sure if this works. -Dusk
+ */
 public class TransformEvolutionDataMerger implements DataMapValueMerger<Item, TransformEvolutionData> {
 
     @Override
