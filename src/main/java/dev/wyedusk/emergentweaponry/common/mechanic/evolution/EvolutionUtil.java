@@ -26,7 +26,7 @@ public class EvolutionUtil {
      * @return An integer value of how much Potential the item has, or -1 if the item is not an evolvable item.
      */
     public static int getPotential(ItemStack stack) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         return data == null ? -1 : data.potential();
     }
 
@@ -37,12 +37,12 @@ public class EvolutionUtil {
      * @param potential An integer value of how much Potential the item should have.
      */
     public static void setPotential(ItemStack stack, int potential) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         if (data == null) {
             EmergentWeaponry.LOGGER.error("Attempted to set the Potential of a non-evolvable item!");
             return;
         }
-        stack.set(Contents.DataComponents.EVOLUTION_DATA, new EvolutionData(
+        stack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
                 potential, data.maxPotential(), data.improvementTier()));
     }
 
@@ -53,7 +53,7 @@ public class EvolutionUtil {
      * @return An integer value of how much Max Potential the item has, or -1 if the item is not an evolvable item.
      */
     public static int getMaxPotential(ItemStack stack) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         return data == null ? -1 : data.maxPotential();
     }
     /**
@@ -63,12 +63,12 @@ public class EvolutionUtil {
      * @param maxPotential An integer value of how much Max Potential the item should have.
      */
     public static void setMaxPotential(ItemStack stack, int maxPotential) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         if (data == null) {
             EmergentWeaponry.LOGGER.error("Attempted to set the Max Potential of a non-evolvable item!");
             return;
         }
-        stack.set(Contents.DataComponents.EVOLUTION_DATA, new EvolutionData(
+        stack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
                 data.potential(), maxPotential, data.improvementTier()));
     }
 
@@ -79,7 +79,7 @@ public class EvolutionUtil {
      * @return An integer value of what Improvement Tier the item is, or -1 if the item is not an evolvable item.
      */
     public static int getImprovementTier(ItemStack stack) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         return data == null ? -1 : data.improvementTier();
     }
     /**
@@ -89,12 +89,12 @@ public class EvolutionUtil {
      * @param improvementTier An integer value of what Improvement Tier the item should be at
      */
     public static void setImprovementTier(ItemStack stack, int improvementTier) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         if (data == null) {
             EmergentWeaponry.LOGGER.error("Attempted to set the Improvement Tier of a non-evolvable item!");
             return;
         }
-        stack.set(Contents.DataComponents.EVOLUTION_DATA, new EvolutionData(
+        stack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
                 data.potential(), data.maxPotential(), improvementTier));
     }
 
@@ -107,7 +107,7 @@ public class EvolutionUtil {
      *         non-evolvable items.
      */
     public static boolean canEvolve(ItemStack stack) {
-        EvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
+        ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         return data != null && data.potential() >= data.maxPotential();
     }
 }

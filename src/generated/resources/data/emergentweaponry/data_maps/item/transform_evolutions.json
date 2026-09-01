@@ -1,0 +1,292 @@
+{
+  "values": {
+    "minecraft:chainmail_boots": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:iron_boots"
+        }
+      ]
+    },
+    "minecraft:chainmail_chestplate": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:iron_chestplate"
+        }
+      ]
+    },
+    "minecraft:chainmail_helmet": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:iron_helmet"
+        }
+      ]
+    },
+    "minecraft:chainmail_leggings": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:iron_leggings"
+        }
+      ]
+    },
+    "minecraft:golden_axe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:diamond_axe"
+        }
+      ]
+    },
+    "minecraft:golden_boots": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:diamond_boots"
+        }
+      ]
+    },
+    "minecraft:golden_chestplate": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:diamond_chestplate"
+        }
+      ]
+    },
+    "minecraft:golden_helmet": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:diamond_helmet"
+        }
+      ]
+    },
+    "minecraft:golden_hoe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:diamond_hoe"
+        }
+      ]
+    },
+    "minecraft:golden_leggings": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:diamond_leggings"
+        }
+      ]
+    },
+    "minecraft:golden_pickaxe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:diamond_pickaxe"
+        }
+      ]
+    },
+    "minecraft:golden_shovel": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:diamond_shovel"
+        }
+      ]
+    },
+    "minecraft:golden_sword": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:diamond_sword"
+        }
+      ]
+    },
+    "minecraft:iron_axe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:golden_axe"
+        }
+      ]
+    },
+    "minecraft:iron_boots": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:golden_boots"
+        }
+      ]
+    },
+    "minecraft:iron_chestplate": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:golden_chestplate"
+        }
+      ]
+    },
+    "minecraft:iron_helmet": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:golden_helmet"
+        }
+      ]
+    },
+    "minecraft:iron_hoe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:golden_hoe"
+        }
+      ]
+    },
+    "minecraft:iron_leggings": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:golden_leggings"
+        }
+      ]
+    },
+    "minecraft:iron_pickaxe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:golden_pickaxe"
+        }
+      ]
+    },
+    "minecraft:iron_shovel": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:golden_shovel"
+        }
+      ]
+    },
+    "minecraft:iron_sword": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:golden_sword"
+        }
+      ]
+    },
+    "minecraft:leather_boots": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:chainmail_boots"
+        }
+      ]
+    },
+    "minecraft:leather_chestplate": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:chainmail_chestplate"
+        }
+      ]
+    },
+    "minecraft:leather_helmet": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:chainmail_helmet"
+        }
+      ]
+    },
+    "minecraft:leather_leggings": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_ARMOR",
+          "evolvesInto": "minecraft:chainmail_leggings"
+        }
+      ]
+    },
+    "minecraft:stone_axe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:iron_axe"
+        }
+      ]
+    },
+    "minecraft:stone_hoe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:iron_hoe"
+        }
+      ]
+    },
+    "minecraft:stone_pickaxe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:iron_pickaxe"
+        }
+      ]
+    },
+    "minecraft:stone_shovel": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:iron_shovel"
+        }
+      ]
+    },
+    "minecraft:stone_sword": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:iron_sword"
+        }
+      ]
+    },
+    "minecraft:wooden_axe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:stone_axe"
+        }
+      ]
+    },
+    "minecraft:wooden_hoe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:stone_hoe"
+        }
+      ]
+    },
+    "minecraft:wooden_pickaxe": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:stone_pickaxe"
+        }
+      ]
+    },
+    "minecraft:wooden_shovel": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:stone_shovel"
+        }
+      ]
+    },
+    "minecraft:wooden_sword": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "VANILLA_TOOL",
+          "evolvesInto": "minecraft:stone_sword"
+        }
+      ]
+    }
+  }
+}

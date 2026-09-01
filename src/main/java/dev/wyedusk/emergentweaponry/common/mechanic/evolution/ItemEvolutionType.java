@@ -3,7 +3,7 @@ package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
 /**
  * Defines all item evolution types.
  */
-public enum EvolutionType {
+public enum ItemEvolutionType {
     /**
      * The IMPROVEMENT evolution type solely acts as an improvement to an item's statistics, for example
      * swords can become stronger and deal more damage, pickaxes become capable of mining faster, armour

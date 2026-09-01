@@ -1,13 +1,22 @@
 package dev.wyedusk.emergentweaponry.common.content;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionDataMerger;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.datamaps.AdvancedDataMapType;
+import net.neoforged.neoforge.registries.datamaps.DataMapType;
+import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 
 public class Contents {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(EmergentWeaponry.MODID);
@@ -19,18 +28,34 @@ public class Contents {
     // Items
     // Data Components
     public static class DataComponents {
-        public static final DeferredHolder<DataComponentType<?>, DataComponentType<EvolutionData>> EVOLUTION_DATA = DATA_COMPONENTS.registerComponentType(
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemEvolutionData>> EVOLUTION_DATA = DATA_COMPONENTS.registerComponentType(
                 "evolution",
-                builder -> builder.persistent(EvolutionData.CODEC).networkSynchronized(EvolutionData.STREAM_CODEC)
+                builder -> builder.persistent(ItemEvolutionData.CODEC).networkSynchronized(ItemEvolutionData.STREAM_CODEC)
         );
 
         protected static void register(IEventBus modEventBus) { DATA_COMPONENTS.register(modEventBus); }
     }
+    // Data Maps
+    public static class DataMaps {
+        public static final AdvancedDataMapType<Item, TransformEvolutionData, ?> TRANSFORM_EVOLUTION_DATA_MAP = AdvancedDataMapType.builder(
+                ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "transform_evolutions"),
+                Registries.ITEM,
+                TransformEvolutionData.CODEC
+        ).merger(new TransformEvolutionDataMerger()).build();
+
+        @SubscribeEvent
+        public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
+            event.register(TRANSFORM_EVOLUTION_DATA_MAP);
+        }
+    }
     // Creative Mode Tabs
+
     public static void registerContents(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         DataComponents.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+
+        modEventBus.register(DataMaps.class);
     }
 }
