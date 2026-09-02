@@ -12,7 +12,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
@@ -85,16 +84,8 @@ public class ModificationTableMenu extends AbstractContainerMenu {
     }
 
     private void updateAvailableModifications(ItemStack originalItem) {
-        if (originalItem.isEmpty()) {
-            availableModifications = new ItemStack[]{};
-            return;
-        }
-
-        availableModifications = new ItemStack[]{
-                this.temporaryInventory.getItem(0),
-                Items.COD.asItem().getDefaultInstance(),
-                Items.FISHING_ROD.asItem().getDefaultInstance()
-        };
+        if (this.getBlockEntity().getLevel() == null) return;
+        availableModifications = EvolutionUtil.getAvailableEvolutionItems(this.getBlockEntity().getLevel().registryAccess(), temporaryInventory.getItem(0)).toArray(new ItemStack[0]);
     }
 
     @Override

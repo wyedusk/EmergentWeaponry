@@ -6,7 +6,7 @@ public class ServerConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     // Config Specs
-    private static final ModConfigSpec.IntValue MAX_IMPROVEMENT_TIER;
+    public static final ModConfigSpec.IntValue MAX_IMPROVEMENT_TIER;
 
     public static final ModConfigSpec SPEC;
 

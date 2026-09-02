@@ -1,12 +1,19 @@
 package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
+import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for handling evolution items. An evolvable item is defined by having the EVOLUTION_DATA
@@ -136,5 +143,54 @@ public class EvolutionUtil {
     public static boolean canEvolve(ItemStack stack) {
         ItemEvolutionData data = stack.get(Contents.DataComponents.EVOLUTION_DATA);
         return data != null && data.potential() >= data.maxPotential();
+    }
+
+    public static List<ItemStack> getAvailableEvolutionItems(RegistryAccess registryAccess, ItemStack stack) {
+        ArrayList<ItemStack> availableItems = new ArrayList<>();
+        if (!canEvolve(stack)) return List.of();
+
+        if (EvolutionUtil.getImprovementTier(stack) < ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()) {
+            ItemStack improvedStack = stack.copy();
+            // Modify evolution data
+            improvedStack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
+                    0,
+                    (int) (Math.round((EvolutionUtil.getMaxPotential(stack) * 1.25) / 5) * 5),
+                    EvolutionUtil.getImprovementTier(stack) + 1));
+            // Reset progression data
+            improvedStack.set(Contents.DataComponents.PROGRESSION_DATA, new ProgressionData(0, 0, 0, 0));
+            improvedStack.set(Contents.DataComponents.PROGRESSION_LOOP_DATA, new ProgressionLoopData(0, 0, 0, 0));
+
+            availableItems.add(improvedStack);
+        }
+
+        Holder<Item> itemHolder = stack.getItemHolder();
+        TransformEvolutionData transformData = itemHolder.getData(Contents.DataMaps.TRANSFORM_EVOLUTION_DATA_MAP);
+
+        if (transformData != null) {
+            transformData.evolutionList().forEach(evoInstance -> {
+                Item evolvedStackItem = BuiltInRegistries.ITEM.get(evoInstance.evolvesInto());
+
+                Registry<TierDataHolder> registry = registryAccess.registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
+                if (registry == null) return;
+
+                final ItemEvolutionData[] itemEvoData = {new ItemEvolutionData(0, 0, 0)};
+                registry.forEach(registryValues -> registryValues.values().forEach((resLoc, tierData) -> {
+                    final int maxPotential = tierData.startingMaxPotential();
+                    if (tierData.members().contains(evoInstance.evolvesInto())) {
+                        itemEvoData[0] = new ItemEvolutionData(0, maxPotential, 0);
+                    }
+                }));
+
+                ItemStack evolvedStack = new ItemStack(evolvedStackItem);
+                evolvedStack.applyComponents(stack.getComponents());
+                evolvedStack.set(Contents.DataComponents.EVOLUTION_DATA, itemEvoData[0]);
+                evolvedStack.set(Contents.DataComponents.PROGRESSION_DATA, new ProgressionData(0, 0, 0, 0));
+                evolvedStack.set(Contents.DataComponents.PROGRESSION_LOOP_DATA, new ProgressionLoopData(0, 0, 0, 0));
+
+                availableItems.add(evolvedStack);
+            });
+        }
+
+        return availableItems.stream().toList();
     }
 }

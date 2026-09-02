@@ -1,13 +1,18 @@
 package dev.wyedusk.emergentweaponry.mixin.common;
 
+import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
+import dev.wyedusk.emergentweaponry.common.gui.component.StylisedComponents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.spongepowered.asm.mixin.Final;
@@ -17,6 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
@@ -57,5 +63,37 @@ public abstract class ItemStackMixin {
         }
 
         this.components = components;
+    }
+
+    @Inject(method = "getRarity", at = @At("RETURN"), cancellable = true)
+    public void emergentweaponry$getRarity(CallbackInfoReturnable<Rarity> cir) {
+        ItemStack instance = (ItemStack) (Object) this;
+        Rarity rarity = cir.getReturnValue();
+        Rarity[] rarities = Rarity.values();
+
+        if (EvolutionUtil.getImprovementTier(instance) != -1) {
+            if (EvolutionUtil.getImprovementTier(instance) == ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()) {
+                cir.setReturnValue(Rarity.EPIC);
+                return;
+            }
+            int nextRarity = Math.min(rarity.ordinal() + EvolutionUtil.getImprovementTier(instance), rarities.length - 1);
+            cir.setReturnValue(rarities[nextRarity]);
+        }
+    }
+
+    @Inject(method = "getHoverName", at = @At("RETURN"), cancellable = true)
+    private void emergentweaponry$getHoverName(CallbackInfoReturnable<Component> cir) {
+        ItemStack instance = (ItemStack) (Object) this;
+        boolean isMaxImprovement = EvolutionUtil.getImprovementTier(instance) == ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()
+                && EvolutionUtil.getPotential(instance) >= EvolutionUtil.getMaxPotential(instance);
+
+        MutableComponent nameStyle = cir.getReturnValue().copy();
+
+        if (isMaxImprovement) {
+            Component customStyledName = StylisedComponents.getMaxImprovementStyleTextComponent(nameStyle.getString());
+            nameStyle = customStyledName.copy();
+        }
+
+        cir.setReturnValue(nameStyle);
     }
 }
