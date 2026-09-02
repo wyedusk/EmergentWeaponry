@@ -2,6 +2,7 @@ package dev.wyedusk.emergentweaponry.common;
 
 import com.mojang.logging.LogUtils;
 import dev.wyedusk.emergentweaponry.common.config.CommonConfig;
+import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -16,7 +17,9 @@ public class EmergentWeaponry {
 
     public EmergentWeaponry(IEventBus modEventBus, ModContainer modContainer) {
         Contents.registerContents(modEventBus);
+
         modContainer.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
     }
 
 }
