@@ -1,8 +1,7 @@
 package dev.wyedusk.emergentweaponry.mixin.common;
 
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionTiersData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -34,9 +33,11 @@ public abstract class ItemStackMixin {
         ItemStack instance = (ItemStack) (Object) this;
         var server = ServerLifecycleHooks.getCurrentServer();
         if (server == null) return;
-        Registry<EvolutionTiersData> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
+        Registry<TierDataHolder> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
         if (registry == null) return;
         ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(instance.getItem());
+
+        // Add evolution data if this item is an evolvable item and doesn't have it already.
         registry.forEach(registryValues -> registryValues.values().forEach((resLoc, tierData) -> {
             final int maxPotential = tierData.startingMaxPotential();
             if (tierData.members().contains(itemKey)) {
@@ -45,6 +46,16 @@ public abstract class ItemStackMixin {
                 }
             }
         }));
+        // If the item is evolvable, add any missing progression data components.
+        if (EvolutionUtil.isEvolvable(instance)) {
+            if (!components.has(Contents.DataComponents.PROGRESSION_DATA.get())) {
+                components.set(Contents.DataComponents.PROGRESSION_DATA.get(), new ProgressionData(0, 0, 0, 0));
+            }
+            if (!components.has(Contents.DataComponents.PROGRESSION_LOOP_DATA.get())) {
+                components.set(Contents.DataComponents.PROGRESSION_LOOP_DATA.get(), new ProgressionLoopData(0, 0, 0, 0));
+            }
+        }
+
         this.components = components;
     }
 }

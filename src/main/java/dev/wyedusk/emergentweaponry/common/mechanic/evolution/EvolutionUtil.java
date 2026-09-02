@@ -2,7 +2,11 @@ package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /**
  * Utility class for handling evolution items. An evolvable item is defined by having the EVOLUTION_DATA
@@ -43,7 +47,7 @@ public class EvolutionUtil {
             return;
         }
         stack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
-                potential, data.maxPotential(), data.improvementTier()));
+                Math.clamp(potential, 0, data.maxPotential()), data.maxPotential(), data.improvementTier()));
     }
 
     /**
@@ -96,6 +100,29 @@ public class EvolutionUtil {
         }
         stack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
                 data.potential(), data.maxPotential(), improvementTier));
+    }
+
+    /**
+     * Get the tier data of an item.
+     *
+     * @param stack The ItemStack to get the tier data of.
+     * @return A TierData object based on the stack item, or null if none exists.
+     */
+    public static TierData getTierData(ItemStack stack) {
+        var server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) return null;
+        Registry<TierDataHolder> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
+        if (registry == null) return null;
+        ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        final TierData[] tierData = {null};
+
+        registry.forEach(registryValues -> registryValues.values().forEach((resLoc, ttierData) -> {
+            final int maxPotential = ttierData.startingMaxPotential();
+            if (ttierData.members().contains(itemKey)) {
+                tierData[0] = ttierData;
+            }
+        }));
+        return tierData[0];
     }
 
     /**

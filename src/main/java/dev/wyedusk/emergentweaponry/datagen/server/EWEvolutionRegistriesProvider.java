@@ -2,8 +2,8 @@ package dev.wyedusk.emergentweaponry.datagen.server;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionTiersData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierData;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -33,18 +33,22 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                 );
     }
 
-    private static EvolutionTiersData createTierPotentials() {
-        return new EvolutionTiersData(Map.of(
-                ResourceLocation.fromNamespaceAndPath("minecraft", "leather"), new TierPotentialData(
+    private static TierDataHolder createTierPotentials() {
+        return new TierDataHolder(Map.of(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "leather"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.LEATHER_HELMET),
                                 BuiltInRegistries.ITEM.getKey(Items.LEATHER_CHESTPLATE),
                                 BuiltInRegistries.ITEM.getKey(Items.LEATHER_LEGGINGS),
                                 BuiltInRegistries.ITEM.getKey(Items.LEATHER_BOOTS)
                         ),
-                        40
+                        5,
+                        0,
+                        0,
+                        0,
+                        5
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "wood"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "wood"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.WOODEN_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.WOODEN_HOE),
@@ -52,9 +56,13 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.WOODEN_SHOVEL),
                                 BuiltInRegistries.ITEM.getKey(Items.WOODEN_SWORD)
                         ),
-                        30
+                        30,
+                        8,
+                        1,
+                        30,
+                        0
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "stone"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "stone"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.STONE_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.STONE_HOE),
@@ -62,9 +70,13 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.STONE_SHOVEL),
                                 BuiltInRegistries.ITEM.getKey(Items.STONE_SWORD)
                         ),
-                        70
+                        70,
+                        16,
+                        1,
+                        60,
+                        0
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "iron"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "iron"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.IRON_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.IRON_HOE),
@@ -83,9 +95,13 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_LEGGINGS),
                                 BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_BOOTS)
                         ),
-                        125
+                        125,
+                        18,
+                        2,
+                        100,
+                        15
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "gold"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "gold"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.GOLDEN_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.GOLDEN_HOE),
@@ -98,9 +114,13 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.GOLDEN_LEGGINGS),
                                 BuiltInRegistries.ITEM.getKey(Items.GOLDEN_BOOTS)
                         ),
+                        15,
+                        8,
+                        1,
+                        30,
                         15
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "diamond"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "diamond"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.DIAMOND_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.DIAMOND_HOE),
@@ -113,9 +133,13 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.DIAMOND_LEGGINGS),
                                 BuiltInRegistries.ITEM.getKey(Items.DIAMOND_BOOTS)
                         ),
-                        250
+                        250,
+                        20,
+                        4,
+                        200,
+                        30
                 ),
-                ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), new TierPotentialData(
+                ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), new TierData(
                         List.of(
                                 BuiltInRegistries.ITEM.getKey(Items.NETHERITE_AXE),
                                 BuiltInRegistries.ITEM.getKey(Items.NETHERITE_HOE),
@@ -128,7 +152,11 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                                 BuiltInRegistries.ITEM.getKey(Items.NETHERITE_LEGGINGS),
                                 BuiltInRegistries.ITEM.getKey(Items.NETHERITE_BOOTS)
                         ),
-                        500
+                        500,
+                        40,
+                        8,
+                        400,
+                        60
                 )
         ));
     }

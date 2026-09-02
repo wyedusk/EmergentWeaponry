@@ -28,11 +28,11 @@ public class Contents {
     // Items
     // Datapack Registries
     public static class DatapackRegistries {
-        public static final ResourceKey<Registry<EvolutionTiersData>> EVOLUTION = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "evolution"));
+        public static final ResourceKey<Registry<TierDataHolder>> EVOLUTION = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "evolution"));
 
         @SubscribeEvent
         public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-            event.dataPackRegistry(EVOLUTION, EvolutionTiersData.CODEC, EvolutionTiersData.CODEC);
+            event.dataPackRegistry(EVOLUTION, TierDataHolder.CODEC, TierDataHolder.CODEC);
         }
 
     }
@@ -41,6 +41,14 @@ public class Contents {
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemEvolutionData>> EVOLUTION_DATA = DATA_COMPONENTS.registerComponentType(
                 "evolution",
                 builder -> builder.persistent(ItemEvolutionData.CODEC).networkSynchronized(ItemEvolutionData.STREAM_CODEC)
+        );
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<ProgressionData>> PROGRESSION_DATA = DATA_COMPONENTS.registerComponentType(
+                "progression",
+                builder -> builder.persistent(ProgressionData.CODEC).networkSynchronized(ProgressionData.STREAM_CODEC)
+        );
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<ProgressionLoopData>> PROGRESSION_LOOP_DATA = DATA_COMPONENTS.registerComponentType(
+                "progression_loops",
+                builder -> builder.persistent(ProgressionLoopData.CODEC).networkSynchronized(ProgressionLoopData.STREAM_CODEC)
         );
 
         protected static void register(IEventBus modEventBus) { DATA_COMPONENTS.register(modEventBus); }
@@ -52,10 +60,10 @@ public class Contents {
                 Registries.ITEM,
                 TransformEvolutionData.CODEC
         ).merger(new TransformEvolutionDataMerger()).build();
-        public static final DataMapType<Item, TierPotentialData> TIER_POTENTIAL_DATA_MAP = DataMapType.builder(
+        public static final DataMapType<Item, TierData> TIER_POTENTIAL_DATA_MAP = DataMapType.builder(
                 ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "tier_potential"),
                 Registries.ITEM,
-                TierPotentialData.CODEC
+                TierData.CODEC
         ).build();
 
         @SubscribeEvent

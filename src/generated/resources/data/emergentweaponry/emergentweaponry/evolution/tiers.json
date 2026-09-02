@@ -12,6 +12,10 @@
         "minecraft:diamond_leggings",
         "minecraft:diamond_boots"
       ],
+      "startingBlockBreakRequirement": 200,
+      "startingDamageDealtRequirement": 20,
+      "startingDamageTakenRequirement": 30,
+      "startingKillRequirement": 4,
       "startingMaxPotential": 250
     },
     "minecraft:gold": {
@@ -26,6 +30,10 @@
         "minecraft:golden_leggings",
         "minecraft:golden_boots"
       ],
+      "startingBlockBreakRequirement": 30,
+      "startingDamageDealtRequirement": 8,
+      "startingDamageTakenRequirement": 15,
+      "startingKillRequirement": 1,
       "startingMaxPotential": 15
     },
     "minecraft:iron": {
@@ -44,6 +52,10 @@
         "minecraft:chainmail_leggings",
         "minecraft:chainmail_boots"
       ],
+      "startingBlockBreakRequirement": 100,
+      "startingDamageDealtRequirement": 18,
+      "startingDamageTakenRequirement": 15,
+      "startingKillRequirement": 2,
       "startingMaxPotential": 125
     },
     "minecraft:leather": {
@@ -53,7 +65,11 @@
         "minecraft:leather_leggings",
         "minecraft:leather_boots"
       ],
-      "startingMaxPotential": 40
+      "startingBlockBreakRequirement": 0,
+      "startingDamageDealtRequirement": 0,
+      "startingDamageTakenRequirement": 5,
+      "startingKillRequirement": 0,
+      "startingMaxPotential": 5
     },
     "minecraft:netherite": {
       "members": [
@@ -67,6 +83,10 @@
         "minecraft:netherite_leggings",
         "minecraft:netherite_boots"
       ],
+      "startingBlockBreakRequirement": 400,
+      "startingDamageDealtRequirement": 40,
+      "startingDamageTakenRequirement": 60,
+      "startingKillRequirement": 8,
       "startingMaxPotential": 500
     },
     "minecraft:stone": {
@@ -77,6 +97,10 @@
         "minecraft:stone_shovel",
         "minecraft:stone_sword"
       ],
+      "startingBlockBreakRequirement": 60,
+      "startingDamageDealtRequirement": 16,
+      "startingDamageTakenRequirement": 0,
+      "startingKillRequirement": 1,
       "startingMaxPotential": 70
     },
     "minecraft:wood": {
@@ -87,6 +111,10 @@
         "minecraft:wooden_shovel",
         "minecraft:wooden_sword"
       ],
+      "startingBlockBreakRequirement": 30,
+      "startingDamageDealtRequirement": 8,
+      "startingDamageTakenRequirement": 0,
+      "startingKillRequirement": 1,
       "startingMaxPotential": 30
     }
   }
