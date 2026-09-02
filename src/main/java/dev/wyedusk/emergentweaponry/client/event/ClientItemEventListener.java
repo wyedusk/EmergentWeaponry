@@ -24,7 +24,7 @@ public class ClientItemEventListener {
     public static void onGatherTooltipComponents(RenderTooltipEvent.GatherComponents event) {
         ItemStack stack = event.getItemStack();
         if (!EvolutionUtil.isEvolvable(stack)) return;
-        Either<FormattedText, TooltipComponent> component = Either.right(new PotentialBarTooltipComponent(EvolutionUtil.getPotential(stack), EvolutionUtil.getMaxPotential(stack)));
+        Either<FormattedText, TooltipComponent> component = Either.right(new PotentialBarTooltipComponent(EvolutionUtil.getPotential(stack), EvolutionUtil.getMaxPotential(stack), EvolutionUtil.getImprovementTier(stack)));
         List<FormattedText> extraComponents = new ArrayList<>(List.of());
 
         if (Screen.hasShiftDown()) {

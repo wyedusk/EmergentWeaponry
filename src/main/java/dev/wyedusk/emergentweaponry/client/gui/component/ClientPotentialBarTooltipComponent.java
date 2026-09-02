@@ -4,11 +4,14 @@ import dev.wyedusk.emergentweaponry.common.gui.component.PotentialBarTooltipComp
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
 public class ClientPotentialBarTooltipComponent implements ClientTooltipComponent {
     private final int potential;
     private final int maxPotential;
+    private final int improvementTier;
     private final float percentage;
 
     private static final int COLOUR = 0xFFD4BFFF;
@@ -21,6 +24,7 @@ public class ClientPotentialBarTooltipComponent implements ClientTooltipComponen
     public ClientPotentialBarTooltipComponent(PotentialBarTooltipComponent data) {
         this.potential = data.potential();
         this.maxPotential = data.maxPotential();
+        this.improvementTier = data.improvementTier();
         this.percentage = Math.clamp((float) this.potential / this.maxPotential, 0.0f, 1.0f);
     }
 
@@ -51,6 +55,13 @@ public class ClientPotentialBarTooltipComponent implements ClientTooltipComponen
         int filledWidth = (int) (BAR_WIDTH * this.percentage);
         int filledEndX = currentX + filledWidth;
         if (filledWidth > 0) graphics.fill(currentX, y, filledEndX - 1, endY - 1, COLOUR);
+        String improvementTierStringKey = "enchantment.level." + improvementTier;
+        String improvementTierString = I18n.exists(improvementTierStringKey) ? Component.translatable(improvementTierStringKey).getString() : String.valueOf(improvementTier);
+        int textWidth = font.width(improvementTierString);
+        graphics.drawString(font, improvementTierString, currentX + BAR_WIDTH / 2 - textWidth / 2, y, COLOUR, false);
+        graphics.enableScissor(currentX, y, filledEndX, endY);
+        graphics.drawString(font, improvementTierString, currentX + BAR_WIDTH / 2 - textWidth / 2, y, SHADOW_COLOUR, false);
+        graphics.disableScissor();
         currentX += BAR_WIDTH + TEXT_PADDING;
 
         // Max Potential text
