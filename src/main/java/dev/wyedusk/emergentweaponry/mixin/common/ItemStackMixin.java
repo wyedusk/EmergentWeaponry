@@ -40,7 +40,9 @@ public abstract class ItemStackMixin {
         registry.forEach(registryValues -> registryValues.values().forEach((resLoc, tierData) -> {
             final int maxPotential = tierData.startingMaxPotential();
             if (tierData.members().contains(itemKey)) {
-                components.set(Contents.DataComponents.EVOLUTION_DATA.get(), new ItemEvolutionData(0, maxPotential, 0));
+                if (!(components.has(Contents.DataComponents.EVOLUTION_DATA.get()))) {
+                    components.set(Contents.DataComponents.EVOLUTION_DATA.get(), new ItemEvolutionData(0, maxPotential, 0));
+                }
             }
         }));
         this.components = components;
