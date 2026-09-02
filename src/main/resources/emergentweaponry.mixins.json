@@ -4,6 +4,7 @@
   "package": "dev.wyedusk.emergentweaponry.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "common.ItemStackMixin"
   ],
   "client": [
   ],

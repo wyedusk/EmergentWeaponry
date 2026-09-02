@@ -2,6 +2,7 @@ package dev.wyedusk.emergentweaponry.datagen;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.datagen.server.EWDataMapProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.EWEvolutionRegistriesProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -25,5 +26,12 @@ public class EWDataGenerator implements IModBusEvent {
         // Client-side Providers
         // Server-side Providers
         event.createProvider(EWDataMapProvider::new);
+        generator.addProvider(
+                event.includeServer(),
+                new EWEvolutionRegistriesProvider(
+                        output,
+                        provider
+                )
+        );
     }
 }

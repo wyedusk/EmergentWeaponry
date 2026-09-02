@@ -1,18 +1,18 @@
 package dev.wyedusk.emergentweaponry.common.content;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionDataMerger;
+import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.datamaps.AdvancedDataMapType;
@@ -27,6 +27,16 @@ public class Contents {
 
     // Blocks
     // Items
+    // Datapack Registries
+    public static class DatapackRegistries {
+        public static final ResourceKey<Registry<EvolutionTiersData>> EVOLUTION = ResourceKey.createRegistryKey(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "evolution"));
+
+        @SubscribeEvent
+        public static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
+            event.dataPackRegistry(EVOLUTION, EvolutionTiersData.CODEC, EvolutionTiersData.CODEC);
+        }
+
+    }
     // Data Components
     public static class DataComponents {
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<ItemEvolutionData>> EVOLUTION_DATA = DATA_COMPONENTS.registerComponentType(
@@ -63,6 +73,7 @@ public class Contents {
         DataComponents.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
+        modEventBus.register(DatapackRegistries.class);
         modEventBus.register(DataMaps.class);
     }
 }

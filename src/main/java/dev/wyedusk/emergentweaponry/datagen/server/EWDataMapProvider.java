@@ -30,9 +30,6 @@ public class EWDataMapProvider extends DataMapProvider {
         addVanillaArmorUpgrades();
         // Add Custom upgrades
         addCustomUpgrades();
-
-        // Tier Potential Data Map
-        addTierPotentials();
     }
 
     private void addVanillaToolUpgrades() {
@@ -167,111 +164,5 @@ public class EWDataMapProvider extends DataMapProvider {
                         new TransformEvolutionInstance(ResourceLocation.fromNamespaceAndPath("emergentweaponry", "fire_trident"), TransformEvolutionFlag.CUSTOM),
                         new TransformEvolutionInstance(ResourceLocation.fromNamespaceAndPath("emergentweaponry", "soul_trident"), TransformEvolutionFlag.CUSTOM)
                 )), false);
-    }
-    private void addTierPotentials() {
-        this.builder(Contents.DataMaps.TIER_POTENTIAL_DATA_MAP)
-                .replace(false)
-                // Leather
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "leather"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.LEATHER_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.LEATHER_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.LEATHER_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.LEATHER_BOOTS)
-                        ),
-                        40
-                ), false)
-                // Wood
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "wood"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.WOODEN_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.WOODEN_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.WOODEN_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.WOODEN_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.WOODEN_SWORD)
-                        ),
-                        30
-                ), false)
-                // Stone
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "stone"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.STONE_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.STONE_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.STONE_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.STONE_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.STONE_SWORD)
-                        ),
-                        70
-                ), false)
-                // Iron
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "iron"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_SWORD),
-
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.IRON_BOOTS),
-
-                                // Include chainmail here, because it has the same durability as iron
-                                BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.CHAINMAIL_BOOTS)
-                        ),
-                        125
-                ), false)
-                // Gold
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "gold"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SWORD),
-
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.GOLDEN_BOOTS)
-                        ),
-                        15
-                ), false)
-                // Diamond
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "diamond"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_SWORD),
-
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.DIAMOND_BOOTS)
-                        ),
-                        250
-                ), false)
-                // Netherite
-                .add(ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), new TierPotentialData(
-                        List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_AXE),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_HOE),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_PICKAXE),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_SHOVEL),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_SWORD),
-
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_HELMET),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_CHESTPLATE),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_LEGGINGS),
-                                BuiltInRegistries.ITEM.getKey(Items.NETHERITE_BOOTS)
-                        ),
-                        500
-                ), false);
     }
 }

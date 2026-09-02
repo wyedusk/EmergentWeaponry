@@ -11,11 +11,11 @@ import java.util.List;
  * that fall under a tier.
  *
  * @param members A list of ResourceLocation corresponding to each item in this tier.
- * @param startingPotential The starting Potential value of each item in this tier.
+ * @param startingMaxPotential The starting Max Potential value of each item in this tier.
  */
-public record TierPotentialData(List<ResourceLocation> members, int startingPotential) {
+public record TierPotentialData(List<ResourceLocation> members, int startingMaxPotential) {
     public static final Codec<TierPotentialData> CODEC = RecordCodecBuilder.create(inst -> inst.group(
             ResourceLocation.CODEC.listOf().fieldOf("members").forGetter(TierPotentialData::members),
-            Codec.INT.fieldOf("startingPotential").forGetter(TierPotentialData::startingPotential)
+            Codec.INT.fieldOf("startingMaxPotential").forGetter(TierPotentialData::startingMaxPotential)
     ).apply(inst, TierPotentialData::new));
 }
