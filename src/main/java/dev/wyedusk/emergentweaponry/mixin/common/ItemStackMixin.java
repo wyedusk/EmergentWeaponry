@@ -3,7 +3,6 @@ package dev.wyedusk.emergentweaponry.mixin.common;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionTiersData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;

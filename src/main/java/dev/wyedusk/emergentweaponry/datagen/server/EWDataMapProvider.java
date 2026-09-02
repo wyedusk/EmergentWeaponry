@@ -1,7 +1,6 @@
 package dev.wyedusk.emergentweaponry.datagen.server;
 
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionFlag;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionInstance;

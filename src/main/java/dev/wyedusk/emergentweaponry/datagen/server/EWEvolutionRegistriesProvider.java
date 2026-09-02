@@ -5,7 +5,6 @@ import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionTiersData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierPotentialData;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
