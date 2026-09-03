@@ -7,11 +7,9 @@ import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -25,8 +23,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.List;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
@@ -51,13 +47,9 @@ public abstract class ItemStackMixin {
         // Add evolution data if this item is an evolvable item and doesn't have it already.
         registry.forEach(registryValues -> registryValues.values().forEach((resLoc, tierData) -> {
             final int maxPotential = tierData.startingMaxPotential();
-            List<ResourceLocation> tierMembers = tierData.members();
-            for (ResourceLocation memberLoc : tierMembers) {
-                boolean match = BuiltInRegistries.ITEM.containsKey(memberLoc) || BuiltInRegistries.ITEM.getTag(TagKey.create(Registries.ITEM, memberLoc)).isPresent();
-                if (match) {
-                    if (!(components.has(Contents.DataComponents.EVOLUTION_DATA.get()))) {
-                        components.set(Contents.DataComponents.EVOLUTION_DATA.get(), new ItemEvolutionData(0, maxPotential, 0));
-                    }
+            if (tierData.members().contains(itemKey)) {
+                if (!(components.has(Contents.DataComponents.EVOLUTION_DATA.get()))) {
+                    components.set(Contents.DataComponents.EVOLUTION_DATA.get(), new ItemEvolutionData(0, maxPotential, 0));
                 }
             }
         }));
