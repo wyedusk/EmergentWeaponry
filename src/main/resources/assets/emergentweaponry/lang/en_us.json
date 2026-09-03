@@ -3,5 +3,12 @@
 
   "block.emergentweaponry.modification_table": "Modification Table",
 
-  "container.emergentweaponry.modification_table": "Modification Table"
+  "container.emergentweaponry.modification_table": "Modification Table",
+
+  "emergentweaponry.configuration.upgrading": "Upgrading",
+  "emergentweaponry.configuration.allowVanillaToolUpgrading": "Allow Vanilla Tool Upgrading",
+  "emergentweaponry.configuration.allowVanillaArmorUpgrading": "Allow Vanilla Armor Upgrading",
+  "emergentweaponry.configuration.improving": "Improving",
+  "emergentweaponry.configuration.allowImprovementFeature": "Allow Improvement Feature",
+  "emergentweaponry.configuration.maxImprovementTier": "Max Improvement Tier"
 }

@@ -6,6 +6,8 @@ import dev.wyedusk.emergentweaponry.common.content.Contents;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -14,6 +16,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Utility class for handling evolution items. An evolvable item is defined by having the EVOLUTION_DATA
@@ -145,12 +148,41 @@ public class EvolutionUtil {
         return data != null && data.potential() >= data.maxPotential();
     }
 
+    private static <T> void copyComponent(ItemStack fromStack, ItemStack toStack, DataComponentType<T> type) {
+        T value = fromStack.get(type);
+        if (value != null) toStack.set(type, value);
+    }
+    private static void addImprovedIntegerComponent(ItemStack fromStack, ItemStack toStack, DataComponentType<Integer> type, double multiplier) {
+        Integer value = fromStack.get(type);
+        if (value != null) toStack.set(type, (int) (value * multiplier));
+    }
     public static List<ItemStack> getAvailableEvolutionItems(RegistryAccess registryAccess, ItemStack stack) {
         ArrayList<ItemStack> availableItems = new ArrayList<>();
         if (!canEvolve(stack)) return List.of();
 
-        if (EvolutionUtil.getImprovementTier(stack) < ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()) {
-            ItemStack improvedStack = stack.copy();
+        List<DataComponentType<?>> blacklistedComponentTypes = List.of(
+                DataComponents.DAMAGE, DataComponents.MAX_DAMAGE,
+                DataComponents.RARITY, DataComponents.REPAIR_COST,
+                DataComponents.TOOL
+        );
+
+        if (EvolutionUtil.getImprovementTier(stack) < ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt() && ServerConfig.ALLOW_IMPROVEMENT_FEATURE.get()) {
+            ItemStack improvedStack = new ItemStack(stack.getItem());
+
+            Map<DataComponentType<Integer>, Double> improvedComponentTypes = Map.of(
+                    DataComponents.MAX_DAMAGE, 1.25
+            );
+
+            stack.getComponents().forEach(comp -> {
+                if (!blacklistedComponentTypes.contains(comp.type())) {
+                    copyComponent(stack, improvedStack, comp.type());
+                }
+                if (improvedComponentTypes.containsKey(comp.type())) {
+                    //noinspection unchecked
+                    addImprovedIntegerComponent(stack, improvedStack, (DataComponentType<Integer>) comp.type(), improvedComponentTypes.get(comp.type()));
+                }
+            });
+
             // Modify evolution data
             improvedStack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(
                     0,
@@ -177,12 +209,19 @@ public class EvolutionUtil {
                 registry.forEach(registryValues -> registryValues.values().forEach((resLoc, tierData) -> {
                     final int maxPotential = tierData.startingMaxPotential();
                     if (tierData.members().contains(evoInstance.evolvesInto())) {
+                        if (evoInstance.evolutionFlag() == TransformEvolutionFlag.VANILLA_TOOL && !ServerConfig.ALLOW_VANILLA_TOOL_UPGRADING.get()) return;
+                        if (evoInstance.evolutionFlag() == TransformEvolutionFlag.VANILLA_ARMOR && !ServerConfig.ALLOW_VANILLA_ARMOR_UPGRADING.get()) return;
+
                         itemEvoData[0] = new ItemEvolutionData(0, maxPotential, 0);
                     }
                 }));
 
                 ItemStack evolvedStack = new ItemStack(evolvedStackItem);
-                evolvedStack.applyComponents(stack.getComponents());
+                stack.getComponents().forEach(comp -> {
+                    if (!blacklistedComponentTypes.contains(comp.type())) {
+                        copyComponent(stack, evolvedStack, comp.type());
+                    }
+                });
                 evolvedStack.set(Contents.DataComponents.EVOLUTION_DATA, itemEvoData[0]);
                 evolvedStack.set(Contents.DataComponents.PROGRESSION_DATA, new ProgressionData(0, 0, 0, 0));
                 evolvedStack.set(Contents.DataComponents.PROGRESSION_LOOP_DATA, new ProgressionLoopData(0, 0, 0, 0));
