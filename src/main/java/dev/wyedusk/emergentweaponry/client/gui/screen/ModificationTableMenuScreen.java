@@ -11,6 +11,7 @@ import dev.wyedusk.emergentweaponry.common.network.packet.C2SModifyItemPacket;
 import dev.wyedusk.emergentweaponry.common.util.ItemStatUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -198,7 +199,20 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
         graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 88);
         int y = this.topPos + 17 - detailPanelScroll;
         graphics.blitSprite(TITLE_BOX_SPRITE, this.leftPos + 68, y, 91, 18);
+
+        int improvementTier = EvolutionUtil.getImprovementTier(slot);
+        String improvementTierStringKey = "enchantment.level." + improvementTier;
+        String improvementTierString = I18n.exists(improvementTierStringKey) ? Component.translatable(improvementTierStringKey).getString() : String.valueOf(improvementTier);
+        int tierTextWidth = font.width(improvementTierString);
+
+        // Temporarily modify scissor so the Improvement tier display doesn't overlay over the name text
+        graphics.disableScissor();
+        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 154 - tierTextWidth, this.topPos + 88);
         graphics.drawString(font, slot.getItem().getName(slot).getString(), this.leftPos + 70, y + 4, 0xFFFFFFFF, true);
+        graphics.disableScissor();
+        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 88);
+        graphics.drawString(font, improvementTierString, this.leftPos + 156 - tierTextWidth, y + 4, 0xFFD4BFFF, true);
+
         y += 18;
         for (Map.Entry<String, ModifiedStatDetail> entry : trackedStats.entrySet()) {
             String name = entry.getKey();
@@ -216,6 +230,11 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
                     else graphics.fill(filledModifiedEndX - 1, y + 12, filledEndX - 1, y + 13, 0xFFFF0000);
                 }
             }
+
+            String amountText = String.valueOf(stat.modified);
+            int amountTextWidth = font.width(amountText);
+            int amountColor = stat.modified == stat.original ? 0xFFFFFFFF : (stat.modified > stat.original ? 0xFF00FF00 : 0xFFFFFF00);
+            graphics.drawString(font, amountText, this.leftPos + 156 - amountTextWidth, y + 2, amountColor, true);
             y += 16;
         }
         graphics.disableScissor();
