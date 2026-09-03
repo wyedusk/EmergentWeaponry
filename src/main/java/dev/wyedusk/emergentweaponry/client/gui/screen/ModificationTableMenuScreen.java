@@ -205,7 +205,7 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             ModifiedStatDetail stat = entry.getValue();
             graphics.blitSprite(ATTRIBUTE_BOX_SPRITE, this.leftPos + 68, y, 91, 16);
             graphics.drawString(font, name, this.leftPos + 70, y + 2, 0xFFFFFFFF, true);
-            int filledWidth = (int) (stat.max * stat.original);
+            int filledWidth = (int) (87 * (stat.max / stat.original));
             int filledEndX = this.leftPos + 70 + filledWidth;
             if (filledWidth > 0) {
                 graphics.fill(this.leftPos + 70, y + 12, filledEndX - 1, y + 13, 0xFFFFFFFF);
