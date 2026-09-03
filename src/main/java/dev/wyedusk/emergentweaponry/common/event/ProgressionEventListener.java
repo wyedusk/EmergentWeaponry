@@ -84,6 +84,7 @@ public class ProgressionEventListener {
                 }
             }
             ProgressionUtil.setBlocksBroken(breakingItem, ProgressionUtil.getBlocksBroken(breakingItem) + score);
+            ProgressionUtil.progressCheck(breakingItem);
         }
     }
 
