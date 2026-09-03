@@ -163,7 +163,7 @@ public class EvolutionUtil {
         List<DataComponentType<?>> blacklistedComponentTypes = List.of(
                 DataComponents.DAMAGE, DataComponents.MAX_DAMAGE,
                 DataComponents.RARITY, DataComponents.REPAIR_COST,
-                DataComponents.TOOL
+                DataComponents.TOOL, DataComponents.ATTRIBUTE_MODIFIERS
         );
 
         if (EvolutionUtil.getImprovementTier(stack) < ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt() && ServerConfig.ALLOW_IMPROVEMENT_FEATURE.get()) {
