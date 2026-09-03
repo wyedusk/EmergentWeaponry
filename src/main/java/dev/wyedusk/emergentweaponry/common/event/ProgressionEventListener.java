@@ -16,7 +16,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
 @EventBusSubscriber(modid = EmergentWeaponry.MODID)
-public class ProgressionEventsListener {
+public class ProgressionEventListener {
 
     // onLivingDamage : Damage Dealt, Damage Taken
     @SubscribeEvent
