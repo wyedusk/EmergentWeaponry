@@ -50,52 +50,52 @@ public class EWDataMapProvider extends DataMapProvider {
                 .add(BuiltInRegistries.ITEM.getKey(Items.WOODEN_SWORD), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.STONE_SWORD), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                // Stone -> Iron
+                // Stone -> Gold
                 .add(BuiltInRegistries.ITEM.getKey(Items.STONE_AXE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_AXE), TransformEvolutionFlag.VANILLA_TOOL)
-                )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_HOE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_HOE), TransformEvolutionFlag.VANILLA_TOOL)
-                )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_PICKAXE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_PICKAXE), TransformEvolutionFlag.VANILLA_TOOL)
-                )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_SHOVEL), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_SHOVEL), TransformEvolutionFlag.VANILLA_TOOL)
-                )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_SWORD), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_SWORD), TransformEvolutionFlag.VANILLA_TOOL)
-                )), false)
-                // Iron -> Gold
-                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_AXE), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_AXE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_HOE), new TransformEvolutionData(List.of(
+                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_HOE), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_HOE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_PICKAXE), new TransformEvolutionData(List.of(
+                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_PICKAXE), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_PICKAXE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_SHOVEL), new TransformEvolutionData(List.of(
+                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_SHOVEL), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SHOVEL), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_SWORD), new TransformEvolutionData(List.of(
+                .add(BuiltInRegistries.ITEM.getKey(Items.STONE_SWORD), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SWORD), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
-                // Gold -> Diamond
+                // Gold -> Iron
                 .add(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_AXE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_AXE), TransformEvolutionFlag.VANILLA_TOOL)
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_AXE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
                 .add(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_HOE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_HOE), TransformEvolutionFlag.VANILLA_TOOL)
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_HOE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
                 .add(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_PICKAXE), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_PICKAXE), TransformEvolutionFlag.VANILLA_TOOL)
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_PICKAXE), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
                 .add(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SHOVEL), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_SHOVEL), TransformEvolutionFlag.VANILLA_TOOL)
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_SHOVEL), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false)
                 .add(BuiltInRegistries.ITEM.getKey(Items.GOLDEN_SWORD), new TransformEvolutionData(List.of(
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.IRON_SWORD), TransformEvolutionFlag.VANILLA_TOOL)
+                )), false)
+                // Iron -> Diamond
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_AXE), new TransformEvolutionData(List.of(
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_AXE), TransformEvolutionFlag.VANILLA_TOOL)
+                )), false)
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_HOE), new TransformEvolutionData(List.of(
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_HOE), TransformEvolutionFlag.VANILLA_TOOL)
+                )), false)
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_PICKAXE), new TransformEvolutionData(List.of(
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_PICKAXE), TransformEvolutionFlag.VANILLA_TOOL)
+                )), false)
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_SHOVEL), new TransformEvolutionData(List.of(
+                        new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_SHOVEL), TransformEvolutionFlag.VANILLA_TOOL)
+                )), false)
+                .add(BuiltInRegistries.ITEM.getKey(Items.IRON_SWORD), new TransformEvolutionData(List.of(
                         new TransformEvolutionInstance(BuiltInRegistries.ITEM.getKey(Items.DIAMOND_SWORD), TransformEvolutionFlag.VANILLA_TOOL)
                 )), false);
     }

@@ -36,7 +36,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:diamond_axe"
+          "evolvesInto": "minecraft:iron_axe"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:diamond_hoe"
+          "evolvesInto": "minecraft:iron_hoe"
         }
       ]
     },
@@ -84,7 +84,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:diamond_pickaxe"
+          "evolvesInto": "minecraft:iron_pickaxe"
         }
       ]
     },
@@ -92,7 +92,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:diamond_shovel"
+          "evolvesInto": "minecraft:iron_shovel"
         }
       ]
     },
@@ -100,7 +100,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:diamond_sword"
+          "evolvesInto": "minecraft:iron_sword"
         }
       ]
     },
@@ -108,7 +108,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:golden_axe"
+          "evolvesInto": "minecraft:diamond_axe"
         }
       ]
     },
@@ -140,7 +140,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:golden_hoe"
+          "evolvesInto": "minecraft:diamond_hoe"
         }
       ]
     },
@@ -156,7 +156,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:golden_pickaxe"
+          "evolvesInto": "minecraft:diamond_pickaxe"
         }
       ]
     },
@@ -164,7 +164,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:golden_shovel"
+          "evolvesInto": "minecraft:diamond_shovel"
         }
       ]
     },
@@ -172,7 +172,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:golden_sword"
+          "evolvesInto": "minecraft:diamond_sword"
         }
       ]
     },
@@ -212,7 +212,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:iron_axe"
+          "evolvesInto": "minecraft:golden_axe"
         }
       ]
     },
@@ -220,7 +220,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:iron_hoe"
+          "evolvesInto": "minecraft:golden_hoe"
         }
       ]
     },
@@ -228,7 +228,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:iron_pickaxe"
+          "evolvesInto": "minecraft:golden_pickaxe"
         }
       ]
     },
@@ -236,7 +236,7 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:iron_shovel"
+          "evolvesInto": "minecraft:golden_shovel"
         }
       ]
     },
@@ -244,7 +244,19 @@
       "evolutionList": [
         {
           "evolutionFlag": "VANILLA_TOOL",
-          "evolvesInto": "minecraft:iron_sword"
+          "evolvesInto": "minecraft:golden_sword"
+        }
+      ]
+    },
+    "minecraft:trident": {
+      "evolutionList": [
+        {
+          "evolutionFlag": "CUSTOM",
+          "evolvesInto": "emergentweaponry:fire_trident"
+        },
+        {
+          "evolutionFlag": "CUSTOM",
+          "evolvesInto": "emergentweaponry:soul_trident"
         }
       ]
     },

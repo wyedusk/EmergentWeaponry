@@ -99,8 +99,8 @@ public class ModificationTableMenu extends AbstractContainerMenu {
         ItemStack copyFromStack = fromStack.copy();
 
         if (index < 36) {
-            if (!moveItemStackTo(fromStack, 36, 42, false)) return ItemStack.EMPTY;
-        } else if (index < 42) {
+            if (!moveItemStackTo(fromStack, 36, 37, false)) return ItemStack.EMPTY;
+        } else if (index < 40) {
             if (!moveItemStackTo(fromStack, 0, 36, false)) return ItemStack.EMPTY;
         } else {
             EmergentWeaponry.LOGGER.error("Received invalid slot index {} in ModificationTableMenu", index);
