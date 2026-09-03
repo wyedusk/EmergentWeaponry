@@ -23,9 +23,13 @@ public class StylisedComponents {
         double threshold = 0.95;
 
         for (int i = 0; i < plainText.length(); i++) {
-            double phase = ((time % wavelength) / wavelength * Math.PI * 2) - (i * 0.25);
+            double phase = ((time % wavelength) / wavelength * Math.PI * 2) * 2 - (i * 0.25);
             double wave = Math.sin(phase);
             double intensity = 0.0;
+
+            if ((time % wavelength) / wavelength * 2 > 1.0) {
+                wave = -1.0;
+            }
 
             if (wave > threshold) {
                 double normalized = (wave - threshold) / (1.0 - threshold);
