@@ -110,7 +110,7 @@
       "startingBlockBreakRequirement": 0,
       "startingDamageDealtRequirement": 20,
       "startingDamageTakenRequirement": 0,
-      "startingKillRequirement": 0,
+      "startingKillRequirement": 1,
       "startingMaxPotential": 25
     },
     "minecraft:wood": {
