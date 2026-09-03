@@ -1,6 +1,7 @@
 package dev.wyedusk.emergentweaponry.datagen;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
+import dev.wyedusk.emergentweaponry.datagen.client.EWBlockStateProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.EWDataMapProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.EWEvolutionRegistriesProvider;
 import net.minecraft.core.HolderLookup;
@@ -24,6 +25,13 @@ public class EWDataGenerator implements IModBusEvent {
         CompletableFuture<HolderLookup.Provider> provider = event.getLookupProvider();
 
         // Client-side Providers
+        generator.addProvider(
+                event.includeClient(),
+                new EWBlockStateProvider(
+                        output,
+                        existingFileHelper
+                )
+        );
         // Server-side Providers
         event.createProvider(EWDataMapProvider::new);
         generator.addProvider(

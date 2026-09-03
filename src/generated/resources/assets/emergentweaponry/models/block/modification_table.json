@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "emergentweaponry:block/modification_table_bottom",
+    "east": "emergentweaponry:block/modification_table_side",
+    "north": "emergentweaponry:block/modification_table_side",
+    "particle": "emergentweaponry:block/modification_table_side",
+    "south": "emergentweaponry:block/modification_table_side",
+    "up": "emergentweaponry:block/modification_table_top",
+    "west": "emergentweaponry:block/modification_table_side"
+  }
+}

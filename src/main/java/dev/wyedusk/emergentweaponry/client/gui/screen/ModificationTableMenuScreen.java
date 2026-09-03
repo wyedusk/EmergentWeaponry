@@ -92,18 +92,20 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (isInTopSlot.test((int) mouseX, (int) mouseY)) {
-            ItemStack slot = menu.availableModifications[this.topSlot];
-            if (!slot.isEmpty())
-                sendModifyItemPacket(slot);
-        } else if (isInMiddleSlot.test((int) mouseX, (int) mouseY)) {
-            ItemStack slot = menu.availableModifications[this.middleSlot];
-            if (!slot.isEmpty())
-                sendModifyItemPacket(slot);
-        } else if (isInBottomSlot.test((int) mouseX, (int) mouseY)) {
-            ItemStack slot = menu.availableModifications[this.bottomSlot];
-            if (!slot.isEmpty())
-                sendModifyItemPacket(slot);
+        if (menu.availableModifications.length > 0) {
+            if (isInTopSlot.test((int) mouseX, (int) mouseY)) {
+                ItemStack slot = menu.availableModifications[this.topSlot];
+                if (!slot.isEmpty())
+                    sendModifyItemPacket(slot);
+            } else if (isInMiddleSlot.test((int) mouseX, (int) mouseY)) {
+                ItemStack slot = menu.availableModifications[this.middleSlot];
+                if (!slot.isEmpty())
+                    sendModifyItemPacket(slot);
+            } else if (isInBottomSlot.test((int) mouseX, (int) mouseY)) {
+                ItemStack slot = menu.availableModifications[this.bottomSlot];
+                if (!slot.isEmpty())
+                    sendModifyItemPacket(slot);
+            }
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
