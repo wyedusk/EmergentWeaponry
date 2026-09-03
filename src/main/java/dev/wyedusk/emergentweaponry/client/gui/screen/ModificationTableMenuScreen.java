@@ -37,7 +37,7 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
 
         this.imageWidth = 176;
         this.imageHeight = 191;
-        this.inventoryLabelY = 96;
+        this.inventoryLabelY = 97;
     }
 
     @Override

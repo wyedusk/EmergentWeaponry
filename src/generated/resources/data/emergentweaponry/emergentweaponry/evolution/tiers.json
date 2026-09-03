@@ -12,7 +12,7 @@
         "minecraft:diamond_leggings",
         "minecraft:diamond_boots"
       ],
-      "startingBlockBreakRequirement": 150,
+      "startingBlockBreakRequirement": 20,
       "startingDamageDealtRequirement": 20,
       "startingDamageTakenRequirement": 30,
       "startingKillRequirement": 4,
@@ -30,7 +30,7 @@
         "minecraft:golden_leggings",
         "minecraft:golden_boots"
       ],
-      "startingBlockBreakRequirement": 20,
+      "startingBlockBreakRequirement": 1,
       "startingDamageDealtRequirement": 8,
       "startingDamageTakenRequirement": 15,
       "startingKillRequirement": 1,
@@ -52,7 +52,7 @@
         "minecraft:chainmail_leggings",
         "minecraft:chainmail_boots"
       ],
-      "startingBlockBreakRequirement": 100,
+      "startingBlockBreakRequirement": 10,
       "startingDamageDealtRequirement": 18,
       "startingDamageTakenRequirement": 15,
       "startingKillRequirement": 2,
@@ -83,7 +83,7 @@
         "minecraft:netherite_leggings",
         "minecraft:netherite_boots"
       ],
-      "startingBlockBreakRequirement": 200,
+      "startingBlockBreakRequirement": 30,
       "startingDamageDealtRequirement": 30,
       "startingDamageTakenRequirement": 50,
       "startingKillRequirement": 6,
@@ -97,7 +97,7 @@
         "minecraft:stone_shovel",
         "minecraft:stone_sword"
       ],
-      "startingBlockBreakRequirement": 50,
+      "startingBlockBreakRequirement": 5,
       "startingDamageDealtRequirement": 16,
       "startingDamageTakenRequirement": 0,
       "startingKillRequirement": 1,
@@ -121,7 +121,7 @@
         "minecraft:wooden_shovel",
         "minecraft:wooden_sword"
       ],
-      "startingBlockBreakRequirement": 20,
+      "startingBlockBreakRequirement": 1,
       "startingDamageDealtRequirement": 8,
       "startingDamageTakenRequirement": 0,
       "startingKillRequirement": 1,

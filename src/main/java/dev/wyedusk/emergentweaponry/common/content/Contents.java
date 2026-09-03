@@ -36,7 +36,7 @@ public class Contents {
     // Blocks
     public static class Blocks {
         public static final DeferredBlock<Block> MODIFICATION_TABLE = BLOCKS.register("modification_table", () ->
-                new ModificationTableBlock(BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.CRAFTING_TABLE)));
+                new ModificationTableBlock(BlockBehaviour.Properties.ofFullCopy(net.minecraft.world.level.block.Blocks.STONE)));
 
         protected static void register(IEventBus modEventBus) { BLOCKS.register(modEventBus); }
     }

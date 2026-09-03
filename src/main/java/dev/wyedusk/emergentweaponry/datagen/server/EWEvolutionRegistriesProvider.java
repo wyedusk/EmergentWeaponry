@@ -66,7 +66,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         10,
                         8,
                         1,
-                        20,
+                        1,
                         0
                 ),
                 ResourceLocation.fromNamespaceAndPath("minecraft", "stone"), new TierData(
@@ -80,7 +80,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         25,
                         16,
                         1,
-                        50,
+                        5,
                         0
                 ),
                 ResourceLocation.fromNamespaceAndPath("minecraft", "iron"), new TierData(
@@ -105,7 +105,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         50,
                         18,
                         2,
-                        100,
+                        10,
                         15
                 ),
                 ResourceLocation.fromNamespaceAndPath("minecraft", "gold"), new TierData(
@@ -124,7 +124,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         10,
                         8,
                         1,
-                        20,
+                        1,
                         15
                 ),
                 ResourceLocation.fromNamespaceAndPath("minecraft", "diamond"), new TierData(
@@ -143,7 +143,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         75,
                         20,
                         4,
-                        150,
+                        20,
                         30
                 ),
                 ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"), new TierData(
@@ -162,7 +162,7 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
                         75,
                         30,
                         6,
-                        200,
+                        30,
                         50
                 )
         );

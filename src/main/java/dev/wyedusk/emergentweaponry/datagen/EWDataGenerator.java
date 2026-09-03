@@ -2,8 +2,11 @@ package dev.wyedusk.emergentweaponry.datagen;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.datagen.client.EWBlockStateProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.EWBlockTagsProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.EWDataMapProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.EWEvolutionRegistriesProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.EWRecipeProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.loot_tables.EWLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -37,6 +40,28 @@ public class EWDataGenerator implements IModBusEvent {
         generator.addProvider(
                 event.includeServer(),
                 new EWEvolutionRegistriesProvider(
+                        output,
+                        provider
+                )
+        );
+        generator.addProvider(
+                event.includeServer(),
+                new EWLootTableProvider(
+                        output,
+                        provider
+                )
+        );
+        generator.addProvider(
+                event.includeServer(),
+                new EWBlockTagsProvider(
+                        output,
+                        provider,
+                        existingFileHelper
+                )
+        );
+        generator.addProvider(
+                event.includeServer(),
+                new EWRecipeProvider(
                         output,
                         provider
                 )
