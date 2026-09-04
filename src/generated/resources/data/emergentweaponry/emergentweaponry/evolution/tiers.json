@@ -105,7 +105,10 @@
     },
     "minecraft:trident": {
       "members": [
-        "minecraft:trident"
+        "minecraft:trident",
+        "emergentweaponry:inferno_trident",
+        "emergentweaponry:frost_trident",
+        "emergentweaponry:essence_trident"
       ],
       "startingBlockBreakRequirement": 0,
       "startingDamageDealtRequirement": 20,

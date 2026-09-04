@@ -171,7 +171,10 @@ public class EWEvolutionRegistriesProvider extends DatapackBuiltinEntriesProvide
         return Map.of(
                 ResourceLocation.fromNamespaceAndPath("minecraft", "trident"), new TierData(
                         List.of(
-                                BuiltInRegistries.ITEM.getKey(Items.TRIDENT)
+                                BuiltInRegistries.ITEM.getKey(Items.TRIDENT),
+                                Contents.Items.INFERNO_TRIDENT.getId(),
+                                Contents.Items.FROST_TRIDENT.getId(),
+                                Contents.Items.ESSENCE_TRIDENT.getId()
                         ),
                         25,
                         20,

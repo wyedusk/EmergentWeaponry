@@ -2,10 +2,8 @@ package dev.wyedusk.emergentweaponry.datagen;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.datagen.client.EWBlockStateProvider;
-import dev.wyedusk.emergentweaponry.datagen.server.EWBlockTagsProvider;
-import dev.wyedusk.emergentweaponry.datagen.server.EWDataMapProvider;
-import dev.wyedusk.emergentweaponry.datagen.server.EWEvolutionRegistriesProvider;
-import dev.wyedusk.emergentweaponry.datagen.server.EWRecipeProvider;
+import dev.wyedusk.emergentweaponry.datagen.client.EWItemModelProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.*;
 import dev.wyedusk.emergentweaponry.datagen.server.loot_tables.EWLootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -35,6 +33,13 @@ public class EWDataGenerator implements IModBusEvent {
                         existingFileHelper
                 )
         );
+        generator.addProvider(
+                event.includeClient(),
+                new EWItemModelProvider(
+                        output,
+                        existingFileHelper
+                )
+        );
         // Server-side Providers
         event.createProvider(EWDataMapProvider::new);
         generator.addProvider(
@@ -51,14 +56,17 @@ public class EWDataGenerator implements IModBusEvent {
                         provider
                 )
         );
-        generator.addProvider(
-                event.includeServer(),
-                new EWBlockTagsProvider(
-                        output,
-                        provider,
-                        existingFileHelper
-                )
+        EWBlockTagsProvider blockTagsProvider = new EWBlockTagsProvider(
+                output,
+                provider,
+                existingFileHelper
         );
+        generator.addProvider(event.includeServer(), blockTagsProvider);
+        generator.addProvider(event.includeServer(), new EWItemTagsProvider(
+                output,
+                provider,
+                blockTagsProvider.contentsGetter()
+        ));
         generator.addProvider(
                 event.includeServer(),
                 new EWRecipeProvider(

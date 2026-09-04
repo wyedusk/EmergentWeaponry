@@ -252,11 +252,15 @@
       "evolutionList": [
         {
           "evolutionFlag": "CUSTOM",
-          "evolvesInto": "emergentweaponry:fire_trident"
+          "evolvesInto": "emergentweaponry:inferno_trident"
         },
         {
           "evolutionFlag": "CUSTOM",
-          "evolvesInto": "emergentweaponry:soul_trident"
+          "evolvesInto": "emergentweaponry:frost_trident"
+        },
+        {
+          "evolutionFlag": "CUSTOM",
+          "evolvesInto": "emergentweaponry:essence_trident"
         }
       ]
     },

@@ -1,6 +1,10 @@
 {
   "itemGroup.emergentweaponry": "Emergent Weaponry",
 
+  "item.emergentweaponry.inferno_trident": "Inferno Trident",
+  "item.emergentweaponry.frost_trident": "Frost Trident",
+  "item.emergentweaponry.essence_trident": "Essence Trident",
+
   "block.emergentweaponry.modification_table": "Modification Table",
 
   "container.emergentweaponry.modification_table": "Modification Table",

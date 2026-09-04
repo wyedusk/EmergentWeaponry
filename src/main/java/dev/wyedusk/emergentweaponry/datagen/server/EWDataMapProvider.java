@@ -7,7 +7,6 @@ import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolution
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import org.jetbrains.annotations.NotNull;
@@ -160,8 +159,9 @@ public class EWDataMapProvider extends DataMapProvider {
                 .replace(false)
                 // Tridents
                 .add(BuiltInRegistries.ITEM.getKey(Items.TRIDENT), new TransformEvolutionData(List.of(
-                        new TransformEvolutionInstance(ResourceLocation.fromNamespaceAndPath("emergentweaponry", "fire_trident"), TransformEvolutionFlag.CUSTOM),
-                        new TransformEvolutionInstance(ResourceLocation.fromNamespaceAndPath("emergentweaponry", "soul_trident"), TransformEvolutionFlag.CUSTOM)
+                        new TransformEvolutionInstance(Contents.Items.INFERNO_TRIDENT.getId(), TransformEvolutionFlag.CUSTOM),
+                        new TransformEvolutionInstance(Contents.Items.FROST_TRIDENT.getId(), TransformEvolutionFlag.CUSTOM),
+                        new TransformEvolutionInstance(Contents.Items.ESSENCE_TRIDENT.getId(), TransformEvolutionFlag.CUSTOM)
                 )), false);
     }
 }
