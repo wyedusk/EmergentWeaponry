@@ -4,6 +4,7 @@ import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.entity.ThrownEssenceTrident;
 import dev.wyedusk.emergentweaponry.common.content.entity.base.BaseThrownTrident;
 import dev.wyedusk.emergentweaponry.common.content.item.base.BaseTridentItem;
+import dev.wyedusk.emergentweaponry.common.util.PlayerUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.world.entity.EntityType;
@@ -21,10 +22,15 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.ToIntFunction;
 
 public class EssenceTridentItem extends BaseTridentItem {
-    int xpToll = 1;
-    int healthToll = 4;
+    private static final int healthToll = 4;
+
+    private final ToIntFunction<Player> getXpToll = (player) -> {
+        int level = player.experienceLevel;
+        return (int) (1 + Math.max(0, Math.sqrt(level) * Math.max(1,((level - 10) / 10))));
+    };
 
     public EssenceTridentItem(Properties properties) {
         super(properties);
@@ -49,14 +55,15 @@ public class EssenceTridentItem extends BaseTridentItem {
     @Override
     public boolean meetsRiptideCondition(Player player) {
         if (player.isCreative()) return true;
-        return player.totalExperience >= xpToll || player.getHealth() >= healthToll;
+        return PlayerUtil.getTotalExperience(player) >= getXpToll.applyAsInt(player) || player.getHealth() > healthToll;
     }
 
     @Override
     public void riptidePenalty(Player player) {
-        if (player.totalExperience >= xpToll) {
+        int xpToll = getXpToll.applyAsInt(player);
+        if (PlayerUtil.getTotalExperience(player) >= xpToll) {
             player.giveExperiencePoints(-xpToll);
-        } else if (player.getHealth() >= healthToll) {
+        } else if (player.getHealth() > healthToll) {
             player.hurt(player.damageSources().generic(), healthToll);
         }
     }
