@@ -3,7 +3,11 @@ package dev.wyedusk.emergentweaponry.common.content;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.block.ModificationTableBlock;
 import dev.wyedusk.emergentweaponry.common.content.block.entity.ModificationTableBlockEntity;
+import dev.wyedusk.emergentweaponry.common.content.entity.ThrownEssenceTrident;
+import dev.wyedusk.emergentweaponry.common.content.entity.ThrownFrostTrident;
 import dev.wyedusk.emergentweaponry.common.content.entity.ThrownInfernoTrident;
+import dev.wyedusk.emergentweaponry.common.content.item.EssenceTridentItem;
+import dev.wyedusk.emergentweaponry.common.content.item.FrostTridentItem;
 import dev.wyedusk.emergentweaponry.common.content.item.InfernoTridentItem;
 import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
@@ -62,22 +66,22 @@ public class Contents {
                         .attributes(InfernoTridentItem.createAttributes())
                         .component(net.minecraft.core.component.DataComponents.TOOL, InfernoTridentItem.createToolProperties())));
         public static final DeferredItem<Item> FROST_TRIDENT = ITEMS.register("frost_trident", () ->
-                new TridentItem(new Item.Properties()
+                new FrostTridentItem(new Item.Properties()
                         .durability(325)
                         .rarity(Rarity.RARE)
-                        .attributes(TridentItem.createAttributes())
-                        .component(net.minecraft.core.component.DataComponents.TOOL, TridentItem.createToolProperties())));
+                        .attributes(FrostTridentItem.createAttributes())
+                        .component(net.minecraft.core.component.DataComponents.TOOL, FrostTridentItem.createToolProperties())));
         public static final DeferredItem<Item> ESSENCE_TRIDENT = ITEMS.register("essence_trident", () ->
-                new TridentItem(new Item.Properties()
+                new EssenceTridentItem(new Item.Properties()
                         .durability(325)
                         .rarity(Rarity.RARE)
-                        .attributes(TridentItem.createAttributes())
-                        .component(net.minecraft.core.component.DataComponents.TOOL, TridentItem.createToolProperties())));
+                        .attributes(EssenceTridentItem.createAttributes())
+                        .component(net.minecraft.core.component.DataComponents.TOOL, EssenceTridentItem.createToolProperties())));
 
         public static final DeferredItem<Item> MODIFICATION_TABLE_ITEM = ITEMS.register("modification_table", () ->
                 new BlockItem(Blocks.MODIFICATION_TABLE.get(), new Item.Properties()));
 
-        public static final List<DeferredItem<Item>> tridents = List.of(INFERNO_TRIDENT);//, FROST_TRIDENT, ESSENCE_TRIDENT);
+        public static final List<DeferredItem<Item>> tridents = List.of(INFERNO_TRIDENT, FROST_TRIDENT, ESSENCE_TRIDENT);
 
         protected static void register(IEventBus modEventBus) { ITEMS.register(modEventBus); }
     }
@@ -89,6 +93,18 @@ public class Contents {
                         .clientTrackingRange(4)
                         .updateInterval(20)
                         .build("inferno_trident"));
+        public static final Supplier<EntityType<ThrownFrostTrident>> THROWN_FROST_TRIDENT = ENTITIES.register("frost_trident", () ->
+                EntityType.Builder.<ThrownFrostTrident>of(ThrownFrostTrident::new, MobCategory.MISC)
+                        .sized(0.5F, 0.5F)
+                        .clientTrackingRange(4)
+                        .updateInterval(20)
+                        .build("frost_trident"));
+        public static final Supplier<EntityType<ThrownEssenceTrident>> THROWN_ESSENCE_TRIDENT = ENTITIES.register("essence_trident", () ->
+                EntityType.Builder.<ThrownEssenceTrident>of(ThrownEssenceTrident::new, MobCategory.MISC)
+                        .sized(0.5F, 0.5F)
+                        .clientTrackingRange(4)
+                        .updateInterval(20)
+                        .build("essence_trident"));
 
         protected static void register(IEventBus modEventBus) { ENTITIES.register(modEventBus); }
     }

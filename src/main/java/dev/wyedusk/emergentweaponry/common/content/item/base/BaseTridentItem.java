@@ -39,6 +39,8 @@ public class BaseTridentItem extends TridentItem {
         return player.isInWaterOrRain();
     }
 
+    public void riptidePenalty(Player player) {}
+
     public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity, int chargeTime) {
         if (entity instanceof Player player) {
             int i = this.getUseDuration(stack, entity) - chargeTime;
@@ -75,6 +77,7 @@ public class BaseTridentItem extends TridentItem {
                         f3 *= f / f5;
                         f4 *= f / f5;
                         player.push(f2, f3, f4);
+                        riptidePenalty(player);
                         player.startAutoSpinAttack(20, 8.0F, stack);
                         if (player.onGround()) {
                             player.move(MoverType.SELF, new Vec3(0.0F, 1.1999999F, 0.0F));
