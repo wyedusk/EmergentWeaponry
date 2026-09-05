@@ -57,7 +57,7 @@ public class EssenceTridentItem extends BaseTridentItem {
         if (player.totalExperience >= xpToll) {
             player.giveExperiencePoints(-xpToll);
         } else if (player.getHealth() >= healthToll) {
-            player.heal(-healthToll);
+            player.hurt(player.damageSources().generic(), healthToll);
         }
     }
 

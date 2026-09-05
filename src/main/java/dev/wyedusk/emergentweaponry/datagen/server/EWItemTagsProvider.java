@@ -20,12 +20,13 @@ public class EWItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider provider) {
-        for (DeferredItem<Item> item : Contents.Items.tridents) {
-            addGenericUsableItemTags(item.get());
-            addWeaponTags(item.get());
-            tag(ItemTags.TRIDENT_ENCHANTABLE).add(item.get());
-            tag(Tags.Items.MELEE_WEAPON_TOOLS).add(item.get());
-            tag(Tags.Items.RANGED_WEAPON_TOOLS).add(item.get());
+        for (DeferredItem<Item> defItem : Contents.Items.tridents) {
+            Item item = defItem.get();
+            addGenericUsableItemTags(item);
+            addWeaponTags(item);
+            tag(ItemTags.TRIDENT_ENCHANTABLE).add(item);
+            tag(Tags.Items.MELEE_WEAPON_TOOLS).add(item);
+            tag(Tags.Items.RANGED_WEAPON_TOOLS).add(item);
         }
     }
 

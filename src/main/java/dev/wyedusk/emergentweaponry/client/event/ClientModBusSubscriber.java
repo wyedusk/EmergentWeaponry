@@ -31,9 +31,10 @@ public class ClientModBusSubscriber implements IModBusEvent {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            for (DeferredItem<Item> item : Contents.Items.tridents) {
-                ItemProperties.register(item.get(), ResourceLocation.withDefaultNamespace("throwing"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
-                ItemProperties.register(item.get(), ResourceLocation.withDefaultNamespace("in_hand"), (stack, world, entity, seed) -> entity != null && (entity.getMainHandItem() == stack || entity.getOffhandItem() == stack) ? 1.0F : 0.0F);
+            for (DeferredItem<Item> defItem : Contents.Items.tridents) {
+                Item item = defItem.get();
+                ItemProperties.register(item, ResourceLocation.withDefaultNamespace("throwing"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
+                ItemProperties.register(item, ResourceLocation.withDefaultNamespace("in_hand"), (stack, world, entity, seed) -> entity != null && (entity.getMainHandItem() == stack || entity.getOffhandItem() == stack) ? 1.0F : 0.0F);
             }
         });
     }
@@ -50,12 +51,13 @@ public class ClientModBusSubscriber implements IModBusEvent {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        for (DeferredItem<Item> item : Contents.Items.tridents) {
-            ResourceLocation tridentId = BuiltInRegistries.ITEM.getKey(item.get());
+        for (DeferredItem<Item> defItem : Contents.Items.tridents) {
+            Item item = defItem.get();
+            ResourceLocation tridentId = BuiltInRegistries.ITEM.getKey(item);
             ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(tridentId.getNamespace(), "textures/entity/" + tridentId.getPath() + "/" + tridentId.getPath() + ".png");
             ModelLayerLocation modelLayer = ModelLayers.TRIDENT;
 
-            event.registerEntityRenderer(((BaseTridentItem) item.get()).getEntityType(), context -> new ThrownTridentRenderer(context, tridentId, texture, modelLayer));
+            event.registerEntityRenderer(((BaseTridentItem) item).getEntityType(), context -> new ThrownTridentRenderer(context, tridentId, texture, modelLayer));
         }
     }
 
@@ -66,6 +68,9 @@ public class ClientModBusSubscriber implements IModBusEvent {
             public @NotNull BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return new EWBlockEntityWithoutLevelRenderer();
             }
-        }, Contents.Items.INFERNO_TRIDENT);
+        },
+                Contents.Items.INFERNO_TRIDENT,
+                Contents.Items.FROST_TRIDENT,
+                Contents.Items.ESSENCE_TRIDENT);
     }
 }

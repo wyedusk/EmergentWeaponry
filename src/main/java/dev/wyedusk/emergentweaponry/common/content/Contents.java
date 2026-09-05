@@ -81,7 +81,11 @@ public class Contents {
         public static final DeferredItem<Item> MODIFICATION_TABLE_ITEM = ITEMS.register("modification_table", () ->
                 new BlockItem(Blocks.MODIFICATION_TABLE.get(), new Item.Properties()));
 
-        public static final List<DeferredItem<Item>> tridents = List.of(INFERNO_TRIDENT, FROST_TRIDENT, ESSENCE_TRIDENT);
+        public static final List<DeferredItem<Item>> tridents = List.of(
+                INFERNO_TRIDENT,
+                FROST_TRIDENT,
+                ESSENCE_TRIDENT
+        );
 
         protected static void register(IEventBus modEventBus) { ITEMS.register(modEventBus); }
     }

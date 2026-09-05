@@ -12,21 +12,32 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EWBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRenderer {
     private final TridentModel tridentModel;
+
+    private final List<Item> reskinTridents;
 
     public EWBlockEntityWithoutLevelRenderer() {
         super(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());
 
         this.tridentModel = new TridentModel(Minecraft.getInstance().getEntityModels().bakeLayer(ModelLayers.TRIDENT));
+
+        this.reskinTridents = new ArrayList<>();
+        Contents.Items.tridents.forEach(tridentDefItem -> reskinTridents.add(tridentDefItem.get()));
     }
 
     @Override
     public void renderByItem(@NotNull ItemStack stack, @NotNull ItemDisplayContext context, @NotNull PoseStack pose, @NotNull MultiBufferSource buffer, int light, int overlay) {
+        ResourceLocation stackId = ResourceLocation.parse(stack.getItemHolder().getRegisteredName());
+
         if (context == ItemDisplayContext.GUI) {
             pose.popPose();
             pose.pushPose();
@@ -36,11 +47,12 @@ public class EWBlockEntityWithoutLevelRenderer extends BlockEntityWithoutLevelRe
             Minecraft.getInstance().getItemRenderer().renderModelLists(model, stack, light, overlay, pose, vertexConsumer);
             return;
         }
-        if (stack.is(Contents.Items.INFERNO_TRIDENT)) {
+
+        if (reskinTridents.contains(stack.getItem())) {
             pose.pushPose();
             pose.scale(1.0F, -1.0F, -1.0F);
             VertexConsumer vertexConsumer = ItemRenderer.getFoilBufferDirect(buffer, this.tridentModel.renderType(
-                    ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "textures/entity/inferno_trident/inferno_trident.png")
+                    ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "textures/entity/" + stackId.getPath() + "/" + stackId.getPath() + ".png")
             ), false, stack.hasFoil());
             this.tridentModel.renderToBuffer(pose, vertexConsumer, light, overlay);
             pose.popPose();

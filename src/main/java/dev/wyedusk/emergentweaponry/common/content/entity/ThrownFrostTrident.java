@@ -25,6 +25,6 @@ public class ThrownFrostTrident extends BaseThrownTrident {
 
     @Override
     protected void doPostHurtEffects(@NotNull LivingEntity entity) {
-        entity.setTicksFrozen(140);
+        entity.setTicksFrozen(180);
     }
 }
