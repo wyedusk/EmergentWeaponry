@@ -1,24 +1,14 @@
 package dev.wyedusk.emergentweaponry.common.network.packet;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierData;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
 import dev.wyedusk.emergentweaponry.common.network.cache.client.ClientTierDataCache;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public record S2CTierDataSender(TierDataHolder dataHolder) implements CustomPacketPayload {
     public static final CustomPacketPayload.Type<S2CTierDataSender> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID,
