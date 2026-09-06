@@ -20,6 +20,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
+@OnlyIn(Dist.CLIENT)
 public class ModificationTableMenuScreen extends AbstractContainerScreen<ModificationTableMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "textures/gui/container/modification_table.png");
     private static final ResourceLocation SELECTION_BOX_SPRITE = ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "container/selection_box");

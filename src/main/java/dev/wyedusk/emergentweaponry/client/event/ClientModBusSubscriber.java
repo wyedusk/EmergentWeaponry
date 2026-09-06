@@ -4,6 +4,7 @@ import dev.wyedusk.emergentweaponry.client.gui.component.ClientPotentialBarToolt
 import dev.wyedusk.emergentweaponry.client.gui.screen.ModificationTableMenuScreen;
 import dev.wyedusk.emergentweaponry.client.rendering.EWBlockEntityWithoutLevelRenderer;
 import dev.wyedusk.emergentweaponry.client.rendering.entity.ThrownTridentRenderer;
+import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.item.base.BaseTridentItem;
 import dev.wyedusk.emergentweaponry.common.gui.component.PotentialBarTooltipComponent;
@@ -14,6 +15,7 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.IModBusEvent;
@@ -26,7 +28,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = EmergentWeaponry.MODID, value = Dist.CLIENT)
 public class ClientModBusSubscriber implements IModBusEvent {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
