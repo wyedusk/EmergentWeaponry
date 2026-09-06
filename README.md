@@ -1,8 +1,12 @@
 <h1 align="center">Emergent Weaponry</h1>
-<p align="center"><i>To be added</i></p>
-<p align="center"><a href="https://discord.gg/x7zs6TGWTd"><img alt="discord-plural" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg"></a> <a href="https://github.com/wyedusk/nuouadditions"><img alt="Available on GitHub" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a> <a href="https://neoforged.net/"><img alt="Available for NeoForge" height="56" src="https://raw.githubusercontent.com/cassiancc/Cassians-Badges/refs/heads/main/cozy/NeoForge.svg"></a></p>
+<p align="center"><i>Evolve and improve your gear</i></p>
+<p align="center"><a href="https://discord.gg/x7zs6TGWTd"><img alt="discord-plural" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg"></a> <a href="https://github.com/wyedusk/nuouadditions"><img alt="Available on GitHub" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a> <a href="https://modrinth.com/mod/emergentweaponry"><img alt="Available on Modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a> <a href="https://neoforged.net/"><img alt="Available for NeoForge" height="56" src="https://raw.githubusercontent.com/cassiancc/Cassians-Badges/refs/heads/main/cozy/NeoForge.svg"></a></p>
 <h2>About</h2>
-<p>To be added</p>
+<p>Emergent Weaponry is a mod that adds the ability to evolve and improve your tools, weapons, and armour.</p>
+
+The mod revolves two features: the Modification Table, where you can upgrade your gear; and the Potential mechanic, added to items supported by this mod.
+
+The Modification Table takes in an item that has a full Potential meter, giving you upgrade options for it, while the Potential meter can be filled by performing actions relevant to the specific item (such as dealing damage with a sword or mining blocks with a pickaxe). 
 
 <h2>Credits</h2>
 <ul>
