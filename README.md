@@ -10,6 +10,6 @@ The Modification Table takes in an item that has a full Potential meter, giving 
 
 <h2>Credits</h2>
 <ul>
-    <li><a href="https://github.com/intergrav/devins-badges">Devin's Badges</a>, for the "Chat with us on Discord", "Available on GitHub" badge icons</li>
+    <li><a href="https://github.com/intergrav/devins-badges">Devin's Badges</a>, for the "Chat with us on Discord", "Available on GitHub", "Available on Modrinth" badge icons</li>
     <li><a href="https://github.com/cassiancc/Cassians-Badges">Cassian's Badges</a>, for the "Available for NeoForge" badge icon</li>
 </ul>
