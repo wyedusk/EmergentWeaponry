@@ -67,13 +67,12 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
 
     @Override
     public void render(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
-        if (menu.getBlockEntity().getLevel() != null)
-            menu.availableModifications = EvolutionUtil.getAvailableEvolutionItems(
-                    menu.getBlockEntity().getLevel().registryAccess(),
-                    menu.temporaryInventory.getItem(0)).toArray(new ItemStack[0]
-            );
         super.render(graphics, mouseX, mouseY, partialTick);
         graphics.blitSprite(SELECTION_BOX_SPRITE, this.leftPos + 40, this.topPos + 25 + (19 * menu.highlightedResultSlot), 22, 22);
+
+        if (menu.availableModifications.length > 0 && menu.temporaryInventory.getItem(0).isEmpty()) {
+            menu.availableModifications = new ItemStack[0];
+        }
 
         if (menu.availableModifications.length > 0) {
             this.topSlot = Math.toIntExact(Math.floorMod((long) menu.currentListIndex - 1, (long) menu.availableModifications.length));

@@ -10,12 +10,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.jetbrains.annotations.NotNull;
 
-public record S2CTierDataSender(TierDataHolder dataHolder) implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<S2CTierDataSender> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID,
+public record S2CTierDataPacket(TierDataHolder dataHolder) implements CustomPacketPayload {
+    public static final CustomPacketPayload.Type<S2CTierDataPacket> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID,
             "tier_data_s2c"));
-    public static final StreamCodec<ByteBuf, S2CTierDataSender> STREAM_CODEC = StreamCodec.composite(
-            TierDataHolder.STREAM_CODEC, S2CTierDataSender::dataHolder,
-            S2CTierDataSender::new
+    public static final StreamCodec<ByteBuf, S2CTierDataPacket> STREAM_CODEC = StreamCodec.composite(
+            TierDataHolder.STREAM_CODEC, S2CTierDataPacket::dataHolder,
+            S2CTierDataPacket::new
     );
 
     @Override
@@ -23,11 +23,8 @@ public record S2CTierDataSender(TierDataHolder dataHolder) implements CustomPack
         return TYPE;
     }
 
-    public static void handle(S2CTierDataSender packet, IPayloadContext context) {
-        if (context.flow().isClientbound()) {
-            context.enqueueWork(() -> {
-                ClientTierDataCache.updateCache(packet.dataHolder);
-            });
-        }
+    public static void handle(S2CTierDataPacket packet, IPayloadContext context) {
+        if (!context.flow().isClientbound()) return;
+        context.enqueueWork(() -> ClientTierDataCache.updateCache(packet.dataHolder));
     }
 }

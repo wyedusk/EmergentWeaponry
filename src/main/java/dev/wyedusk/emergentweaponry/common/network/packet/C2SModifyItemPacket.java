@@ -32,6 +32,7 @@ public record C2SModifyItemPacket(ResourceLocation itemId, boolean isImprovement
     }
 
     public static void handle(C2SModifyItemPacket packet, IPayloadContext context) {
+        if (!context.flow().isServerbound()) return;
         Player player = context.player();
         AbstractContainerMenu abstractMenu = player.containerMenu;
         if (!(abstractMenu instanceof ModificationTableMenu menu)) return;

@@ -4,7 +4,10 @@ import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.block.entity.ModificationTableBlockEntity;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.network.packet.S2CSendModificationsPacket;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,17 +15,23 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ModificationTableMenu extends AbstractContainerMenu {
     private final ModificationTableBlockEntity blockEntity;
     private final ContainerLevelAccess levelAccess;
     public final SimpleContainer temporaryInventory;
 
+    private final Player player;
+
     public int highlightedResultSlot = 1;
     public int currentListIndex = 0;
-    public ItemStack[] availableModifications = new ItemStack[]{};
+    public ItemStack[] availableModifications = new ItemStack[0];
 
     // Client-side Constructor
     public ModificationTableMenu(int containerId, Inventory playerInv, FriendlyByteBuf additionalData) {
@@ -41,6 +50,7 @@ public class ModificationTableMenu extends AbstractContainerMenu {
         assert blockEntity.getLevel() != null;
         this.levelAccess = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
         this.temporaryInventory = temporaryInventory;
+        this.player = playerInv.player;
 
         createPlayerHotbar(playerInv);
         createPlayerInventory(playerInv);
@@ -84,8 +94,12 @@ public class ModificationTableMenu extends AbstractContainerMenu {
     }
 
     private void updateAvailableModifications(ItemStack originalItem) {
-        if (this.getBlockEntity().getLevel() == null) return;
-        availableModifications = EvolutionUtil.getAvailableEvolutionItems(this.getBlockEntity().getLevel().registryAccess(), temporaryInventory.getItem(0)).toArray(new ItemStack[0]);
+        Level level = this.getBlockEntity().getLevel();
+        if (level == null) return;
+        if (level instanceof ServerLevel) {
+            availableModifications = EvolutionUtil.getAvailableEvolutionItems(level.registryAccess(), originalItem).toArray(new ItemStack[0]);
+            PacketDistributor.sendToPlayer((ServerPlayer) this.player, new S2CSendModificationsPacket(List.of(availableModifications)));
+        }
     }
 
     @Override

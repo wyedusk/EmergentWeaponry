@@ -3,7 +3,7 @@ package dev.wyedusk.emergentweaponry.common.event;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
-import dev.wyedusk.emergentweaponry.common.network.packet.S2CTierDataSender;
+import dev.wyedusk.emergentweaponry.common.network.packet.S2CTierDataPacket;
 import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -20,7 +20,7 @@ public class PlayerEventListener {
             assert server != null;
             try {
                 Registry<TierDataHolder> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
-                PacketDistributor.sendToPlayer(serverPlayer, new S2CTierDataSender(registry.getAny().get().value()));
+                PacketDistributor.sendToPlayer(serverPlayer, new S2CTierDataPacket(registry.getAny().get().value()));
             } catch (Exception e) {
                 EmergentWeaponry.LOGGER.error("Failed to send tier data to {}!", serverPlayer.getName());
                 EmergentWeaponry.LOGGER.trace("Tier data send failure:", e);
