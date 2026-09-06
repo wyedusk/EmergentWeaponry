@@ -210,10 +210,10 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
 
         // Temporarily modify scissor so the Improvement tier display doesn't overlay over the name text
         graphics.disableScissor();
-        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 154 - tierTextWidth, this.topPos + 88);
+        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 154 - tierTextWidth, this.topPos + 93);
         graphics.drawString(font, slot.getItem().getName(slot).getString(), this.leftPos + 70, y + 4, 0xFFFFFFFF, true);
         graphics.disableScissor();
-        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 88);
+        graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 93);
         graphics.drawString(font, improvementTierString, this.leftPos + 156 - tierTextWidth, y + 4, 0xFFD4BFFF, true);
 
         y += 18;
@@ -243,12 +243,12 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
         graphics.disableScissor();
 
         int usedHeight = 18 + (16 * trackedStats.size());
-        if (usedHeight > 72) detailPanelMaxScroll = 72 - usedHeight;
+        if (usedHeight > 72) detailPanelMaxScroll = usedHeight - 72;
     }
 
     private void drawDetailsPanelScroller(GuiGraphics graphics) {
         final int maxMidRepeat = 32;
-        final int trackHeight = 72;
+        final int trackHeight = 76;
         final int fixedMinHeight = 7;
 
         int repeats = maxMidRepeat;
