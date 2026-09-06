@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.datagen.server;
+package dev.wyedusk.emergentweaponry.datagen.server.datapack_registries;
 
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;

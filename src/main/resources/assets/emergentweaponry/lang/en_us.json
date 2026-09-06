@@ -9,6 +9,9 @@
 
   "container.emergentweaponry.modification_table": "Modification Table",
 
+  "death.attack.emergentweaponry.essence_trident_riptide": "%1$s had their life drained by their Essence Trident",
+  "death.attack.emergentweaponry.essence_trident_riptide.item": "%1$s had their life drained by their %3$s",
+
   "emergentweaponry.configuration.upgrading": "Upgrading",
   "emergentweaponry.configuration.allowVanillaToolUpgrading": "Allow Vanilla Tool Upgrading",
   "emergentweaponry.configuration.allowVanillaArmorUpgrading": "Allow Vanilla Armor Upgrading",

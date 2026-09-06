@@ -54,8 +54,7 @@ public class EssenceTridentItem extends BaseTridentItem {
 
     @Override
     public boolean meetsRiptideCondition(Player player) {
-        if (player.isCreative()) return true;
-        return PlayerUtil.getTotalExperience(player) >= getXpToll.applyAsInt(player) || player.getHealth() > healthToll;
+        return true;
     }
 
     @Override
@@ -63,8 +62,12 @@ public class EssenceTridentItem extends BaseTridentItem {
         int xpToll = getXpToll.applyAsInt(player);
         if (PlayerUtil.getTotalExperience(player) >= xpToll) {
             player.giveExperiencePoints(-xpToll);
-        } else if (player.getHealth() > healthToll) {
-            player.hurt(player.damageSources().generic(), healthToll);
+        } else {
+            try {
+                player.hurt(Contents.DamageTypes.essenceTridentRiptide(player, this), healthToll);
+            } catch (Exception e) {
+                player.hurt(player.damageSources().generic(), healthToll);
+            }
         }
     }
 

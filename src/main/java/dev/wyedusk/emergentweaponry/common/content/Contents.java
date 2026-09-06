@@ -17,6 +17,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.inventory.MenuType;
@@ -151,6 +154,20 @@ public class Contents {
         public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
             event.register(TRANSFORM_EVOLUTION_DATA_MAP);
         }
+    }
+    // Damage Types
+    public static class DamageTypes {
+        public static final ResourceKey<DamageType> ESSENCE_TRIDENT_RIPTIDE =
+                ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EmergentWeaponry.MODID, "essence_trident_riptide"));
+
+        public static DamageSource essenceTridentRiptide(Entity entity, Item item) {
+            return new DamageSource(
+                    entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ESSENCE_TRIDENT_RIPTIDE),
+                    entity
+            );
+        }
+
+        public static void register() {}
     }
     // Menus
     public static class Menus {
