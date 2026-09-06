@@ -25,8 +25,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiPredicate;
 
 @OnlyIn(Dist.CLIENT)
@@ -58,6 +58,7 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
     }
 
     private record ModifiedStatDetail(int min, int max, double original, double modified) {}
+    private record TrackedStatInstance(String name, ModifiedStatDetail details) {}
 
     @Override
     protected void renderBg(@NotNull GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
@@ -119,12 +120,12 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             return;
         }
 
-        HashMap<String, ModifiedStatDetail> trackedStats = new HashMap<>();
+        List<TrackedStatInstance> trackedStats = new ArrayList<>(List.of());
 
         ItemStack maxStack = slot.copy();
         maxStack.set(Contents.DataComponents.EVOLUTION_DATA, new ItemEvolutionData(1, 1, ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()));
 
-        var defaultMainHandStats = ItemStatUtil.getDefaultItemStats(slot.getItem(), EquipmentSlot.MAINHAND);
+        var defaultMainHandStats = ItemStatUtil.getDefaultItemStats(menu.temporaryInventory.getItem(0).getItem(), EquipmentSlot.MAINHAND);
         var oldMainHandStats = ItemStatUtil.getItemStats(menu.temporaryInventory.getItem(0), EquipmentSlot.MAINHAND);
         var currentMainHandStats = ItemStatUtil.getItemStats(slot, EquipmentSlot.MAINHAND);
         var maxMainHandStats = ItemStatUtil.getItemStats(maxStack, EquipmentSlot.MAINHAND);
@@ -134,79 +135,69 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             double oldDamage = 1.0 + oldMainHandStats.getOrDefault(Attributes.ATTACK_DAMAGE, 0.0);
             double currentDamage = 1.0 + currentMainHandStats.getOrDefault(Attributes.ATTACK_DAMAGE, 0.0);
             double maxDamage = 1.0 + maxMainHandStats.getOrDefault(Attributes.ATTACK_DAMAGE, 0.0);
-            trackedStats.put("Damage", new ModifiedStatDetail(
+            trackedStats.add(new TrackedStatInstance("Damage", new ModifiedStatDetail(
                     (int) (Math.floor(baseDamage / 5) * 5),
                     (int) (Math.ceil(maxDamage / 5) * 5),
                     oldDamage,
                     currentDamage
-            ));
-            double baseKnockback = defaultMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double oldKnockback = oldMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double currentKnockback = currentMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double maxKnockback = maxMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            trackedStats.put("Knockback", new ModifiedStatDetail(
-                    (int) (Math.floor(baseKnockback / 5) * 5),
-                    (int) (Math.ceil(maxKnockback / 5) * 5),
-                    oldKnockback,
-                    currentKnockback
-            ));
+            )));
         }
         if (ProgressionUtil.canTrackBlocksBroken(slot)) {
             double baseEfficiency = defaultMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
             double oldEfficiency = oldMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
             double currentEfficiency = currentMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
             double maxEfficiency = maxMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
-            trackedStats.put("Efficiency", new ModifiedStatDetail(
+            trackedStats.add(new TrackedStatInstance("Efficiency", new ModifiedStatDetail(
                     (int) (Math.floor(baseEfficiency / 5) * 5),
                     (int) (Math.ceil(maxEfficiency / 5) * 5),
                     oldEfficiency,
                     currentEfficiency
-            ));
+            )));
             double baseMineSpeed = defaultMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
             double oldMineSpeed = oldMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
             double currentMineSpeed = currentMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
             double maxMineSpeed = maxMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
-            trackedStats.put("Mining Speed", new ModifiedStatDetail(
+            trackedStats.add(new TrackedStatInstance("Mining Speed", new ModifiedStatDetail(
                     (int) (Math.floor(baseMineSpeed / 5) * 5),
                     (int) (Math.ceil(maxMineSpeed / 5) * 5),
                     oldMineSpeed,
                     currentMineSpeed
-            ));
+            )));
         }
         if (ProgressionUtil.canTrackDamageTaken(slot)) {
             double baseArmor = defaultMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
             double oldArmor = oldMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
             double currentArmor = currentMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
             double maxArmor = maxMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
-            trackedStats.put("Armor", new ModifiedStatDetail(
+            trackedStats.add(new TrackedStatInstance("Armor", new ModifiedStatDetail(
                     (int) (Math.floor(baseArmor / 5) * 5),
                     (int) (Math.ceil(maxArmor / 5) * 5),
                     oldArmor,
                     currentArmor
-            ));
+            )));
             double baseToughness = defaultMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
             double oldToughness = oldMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
             double currentToughness = currentMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
             double maxToughness = maxMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
-            trackedStats.put("Toughness", new ModifiedStatDetail(
+            trackedStats.add(new TrackedStatInstance("Toughness", new ModifiedStatDetail(
                     (int) (Math.floor(baseToughness / 5) * 5),
                     (int) (Math.ceil(maxToughness / 5) * 5),
                     oldToughness,
                     currentToughness
-            ));
+            )));
         }
 
         double baseDurability = slot.getItem().getMaxDamage(slot.getItem().getDefaultInstance());
         double oldDurability = menu.temporaryInventory.getItem(0).getMaxDamage();
         double currentDurability = slot.getMaxDamage();
         double maxDurability = slot.getItem().getMaxDamage(slot.getItem().getDefaultInstance()) * Math.pow(1.25, ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt());
-        double durabilityIncrement = 2.5 * Math.pow(10, String.valueOf(maxDurability).length());
-        trackedStats.put("Durability", new ModifiedStatDetail(
+        double durabilityIncrement = Math.pow(10, String.valueOf(Math.max(0, (int) Math.ceil(maxDurability))).length() - 1);
+        trackedStats.add(new TrackedStatInstance("Durability", new ModifiedStatDetail(
                 (int) (Math.floor(baseDurability / durabilityIncrement) * durabilityIncrement),
                 (int) (Math.ceil(maxDurability / durabilityIncrement) * durabilityIncrement),
                 oldDurability,
                 currentDurability
-        ));
+        )));
 
         graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 88);
         int y = this.topPos + 17 - detailPanelScroll;
@@ -226,17 +217,17 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
         graphics.drawString(font, improvementTierString, this.leftPos + 156 - tierTextWidth, y + 4, 0xFFD4BFFF, true);
 
         y += 18;
-        for (Map.Entry<String, ModifiedStatDetail> entry : trackedStats.entrySet()) {
-            String name = entry.getKey();
-            ModifiedStatDetail stat = entry.getValue();
+        for (TrackedStatInstance entry : trackedStats) {
+            String name = entry.name;
+            ModifiedStatDetail stat = entry.details;
             graphics.blitSprite(ATTRIBUTE_BOX_SPRITE, this.leftPos + 68, y, 91, 16);
             graphics.drawString(font, name, this.leftPos + 70, y + 2, 0xFFFFFFFF, true);
             int filledWidth = (int) (87 * (stat.original / stat.max));
             int filledEndX = this.leftPos + 70 + filledWidth;
             if (filledWidth > 0) {
                 graphics.fill(this.leftPos + 70, y + 12, filledEndX - 1, y + 13, 0xFFFFFFFF);
-                int filledModifiedWidth = (int) (stat.max * (stat.modified - stat.original));
-                int filledModifiedEndX = filledEndX + filledModifiedWidth;
+                int filledModifiedWidth = (int) (87 * (stat.modified / stat.max));
+                int filledModifiedEndX = filledEndX + (filledModifiedWidth - filledWidth);
                 if (filledModifiedWidth != 0) {
                     if (filledModifiedEndX > filledEndX) graphics.fill(filledEndX - 1, y + 12, filledModifiedEndX - 1, y + 13, 0xFF00FF00);
                     else graphics.fill(filledModifiedEndX - 1, y + 12, filledEndX - 1, y + 13, 0xFFFF0000);
