@@ -141,10 +141,10 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
                     oldDamage,
                     currentDamage
             ));
-            double baseKnockback = 1.0 + defaultMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double oldKnockback = 1.0 + oldMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double currentKnockback = 1.0 + currentMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
-            double maxKnockback = 1.0 + maxMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
+            double baseKnockback = defaultMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
+            double oldKnockback = oldMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
+            double currentKnockback = currentMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
+            double maxKnockback = maxMainHandStats.getOrDefault(Attributes.ATTACK_KNOCKBACK, 0.0);
             trackedStats.put("Knockback", new ModifiedStatDetail(
                     (int) (Math.floor(baseKnockback / 5) * 5),
                     (int) (Math.ceil(maxKnockback / 5) * 5),
@@ -153,20 +153,20 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             ));
         }
         if (ProgressionUtil.canTrackBlocksBroken(slot)) {
-            double baseEfficiency = 1.0 + defaultMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
-            double oldEfficiency = 1.0 + oldMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
-            double currentEfficiency = 1.0 + currentMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
-            double maxEfficiency = 1.0 + maxMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
+            double baseEfficiency = defaultMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
+            double oldEfficiency = oldMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
+            double currentEfficiency = currentMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
+            double maxEfficiency = maxMainHandStats.getOrDefault(Attributes.MINING_EFFICIENCY, 0.0);
             trackedStats.put("Efficiency", new ModifiedStatDetail(
                     (int) (Math.floor(baseEfficiency / 5) * 5),
                     (int) (Math.ceil(maxEfficiency / 5) * 5),
                     oldEfficiency,
                     currentEfficiency
             ));
-            double baseMineSpeed = 1.0 + defaultMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
-            double oldMineSpeed = 1.0 + oldMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
-            double currentMineSpeed = 1.0 + currentMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
-            double maxMineSpeed = 1.0 + maxMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
+            double baseMineSpeed = defaultMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
+            double oldMineSpeed = oldMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
+            double currentMineSpeed = currentMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
+            double maxMineSpeed = maxMainHandStats.getOrDefault(Attributes.BLOCK_BREAK_SPEED, 0.0);
             trackedStats.put("Mining Speed", new ModifiedStatDetail(
                     (int) (Math.floor(baseMineSpeed / 5) * 5),
                     (int) (Math.ceil(maxMineSpeed / 5) * 5),
@@ -175,20 +175,20 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             ));
         }
         if (ProgressionUtil.canTrackDamageTaken(slot)) {
-            double baseArmor = 1.0 + defaultMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
-            double oldArmor = 1.0 + oldMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
-            double currentArmor = 1.0 + currentMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
-            double maxArmor = 1.0 + maxMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
+            double baseArmor = defaultMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
+            double oldArmor = oldMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
+            double currentArmor = currentMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
+            double maxArmor = maxMainHandStats.getOrDefault(Attributes.ARMOR, 0.0);
             trackedStats.put("Armor", new ModifiedStatDetail(
                     (int) (Math.floor(baseArmor / 5) * 5),
                     (int) (Math.ceil(maxArmor / 5) * 5),
                     oldArmor,
                     currentArmor
             ));
-            double baseToughness = 1.0 + defaultMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
-            double oldToughness = 1.0 + oldMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
-            double currentToughness = 1.0 + currentMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
-            double maxToughness = 1.0 + maxMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
+            double baseToughness = defaultMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
+            double oldToughness = oldMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
+            double currentToughness = currentMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
+            double maxToughness = maxMainHandStats.getOrDefault(Attributes.ARMOR_TOUGHNESS, 0.0);
             trackedStats.put("Toughness", new ModifiedStatDetail(
                     (int) (Math.floor(baseToughness / 5) * 5),
                     (int) (Math.ceil(maxToughness / 5) * 5),
@@ -197,7 +197,17 @@ public class ModificationTableMenuScreen extends AbstractContainerScreen<Modific
             ));
         }
 
-        ModifiedStatDetail defaultStatDetail = new ModifiedStatDetail(0, 1, 0, 0);
+        double baseDurability = slot.getItem().getMaxDamage(slot.getItem().getDefaultInstance());
+        double oldDurability = menu.temporaryInventory.getItem(0).getMaxDamage();
+        double currentDurability = slot.getMaxDamage();
+        double maxDurability = slot.getItem().getMaxDamage(slot.getItem().getDefaultInstance()) * Math.pow(1.25, ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt());
+        double durabilityIncrement = 2.5 * Math.pow(10, String.valueOf(maxDurability).length());
+        trackedStats.put("Durability", new ModifiedStatDetail(
+                (int) (Math.floor(baseDurability / durabilityIncrement) * durabilityIncrement),
+                (int) (Math.ceil(maxDurability / durabilityIncrement) * durabilityIncrement),
+                oldDurability,
+                currentDurability
+        ));
 
         graphics.enableScissor(this.leftPos + 68, this.topPos + 16, this.leftPos + 159, this.topPos + 88);
         int y = this.topPos + 17 - detailPanelScroll;
