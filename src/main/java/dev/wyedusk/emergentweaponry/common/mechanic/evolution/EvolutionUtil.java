@@ -3,6 +3,7 @@ package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
+import dev.wyedusk.emergentweaponry.common.network.cache.client.ClientTierDataCache;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -119,19 +120,30 @@ public class EvolutionUtil {
      * @return A TierData object based on the stack item, or null if none exists.
      */
     public static TierData getTierData(ItemStack stack) {
-        var server = ServerLifecycleHooks.getCurrentServer();
-        if (server == null) return null;
-        Registry<TierDataHolder> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
-        if (registry == null) return null;
         ResourceLocation itemKey = BuiltInRegistries.ITEM.getKey(stack.getItem());
         final TierData[] tierData = {null};
 
-        registry.forEach(registryValues -> registryValues.values().forEach((resLoc, ttierData) -> {
-            final int maxPotential = ttierData.startingMaxPotential();
-            if (ttierData.members().contains(itemKey)) {
-                tierData[0] = ttierData;
-            }
-        }));
+        var server = ServerLifecycleHooks.getCurrentServer();
+        if (server == null) {
+            // Running on client
+            Map<ResourceLocation, TierData> tierDataMap = ClientTierDataCache.getCache();
+            if (tierDataMap.isEmpty()) return null;
+            tierDataMap.forEach((tierKey, ttierData) -> {
+                if (ttierData.members().contains(itemKey)) {
+                    tierData[0] = ttierData;
+                }
+            });
+        } else {
+            // Running on server
+            Registry<TierDataHolder> registry = server.registryAccess().registry(Contents.DatapackRegistries.EVOLUTION).orElse(null);
+            if (registry == null) return null;
+
+            registry.forEach(registryValues -> registryValues.values().forEach((resLoc, ttierData) -> {
+                if (ttierData.members().contains(itemKey)) {
+                    tierData[0] = ttierData;
+                }
+            }));
+        }
         return tierData[0];
     }
 

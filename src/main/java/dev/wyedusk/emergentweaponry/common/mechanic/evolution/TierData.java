@@ -2,6 +2,9 @@ package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
@@ -26,4 +29,14 @@ public record TierData(List<ResourceLocation> members, int startingMaxPotential,
             Codec.INT.fieldOf("startingBlockBreakRequirement").forGetter(TierData::startingBlockBreakRequirement),
             Codec.INT.fieldOf("startingDamageTakenRequirement").forGetter(TierData::startingDamageTakenRequirement)
     ).apply(inst, TierData::new));
+
+    public static final StreamCodec<ByteBuf, TierData> STREAM_CODEC = StreamCodec.composite(
+            ResourceLocation.STREAM_CODEC.apply(ByteBufCodecs.list()), TierData::members,
+            ByteBufCodecs.VAR_INT, TierData::startingMaxPotential,
+            ByteBufCodecs.VAR_INT, TierData::startingDamageDealtRequirement,
+            ByteBufCodecs.VAR_INT, TierData::startingKillRequirement,
+            ByteBufCodecs.VAR_INT, TierData::startingBlockBreakRequirement,
+            ByteBufCodecs.VAR_INT, TierData::startingDamageTakenRequirement,
+            TierData::new
+    );
 }
