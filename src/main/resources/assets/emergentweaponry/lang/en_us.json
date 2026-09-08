@@ -12,6 +12,17 @@
   "death.attack.emergentweaponry.essence_trident_riptide": "%1$s had their life drained by their Essence Trident",
   "death.attack.emergentweaponry.essence_trident_riptide.item": "%1$s had their life drained by their %3$s",
 
+  "advancements.emergentweaponry.root.title": "Emergent Weaponry",
+  "advancements.emergentweaponry.root.description": "It's time to harness the true Potential of your gear",
+  "advancements.emergentweaponry.reach_max_potential.title": "Honing your Gear",
+  "advancements.emergentweaponry.reach_max_potential.description": "Fill the Potential meter of an item",
+  "advancements.emergentweaponry.evolve_item.title": "Upgrades, People!",
+  "advancements.emergentweaponry.evolve_item.description": "Evolve an item into a different or better variant of itself at the Modification Table",
+  "advancements.emergentweaponry.improve_item.title": "Plus One",
+  "advancements.emergentweaponry.improve_item.description": "Make an item stronger by improving it at the Modification Table",
+  "advancements.emergentweaponry.perfect_item.title": "Perfection",
+  "advancements.emergentweaponry.perfect_item.description": "Improve an item to its limit then completely fill its Potential meter",
+
   "emergentweaponry.configuration.upgrading": "Upgrading",
   "emergentweaponry.configuration.allowVanillaToolUpgrading": "Allow Vanilla Tool Upgrading",
   "emergentweaponry.configuration.allowVanillaArmorUpgrading": "Allow Vanilla Armor Upgrading",

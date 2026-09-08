@@ -1,11 +1,14 @@
 package dev.wyedusk.emergentweaponry.common.event;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
+import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ProgressionUtil;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,6 +33,7 @@ public class ProgressionEventListener {
             if (ProgressionUtil.canTrackDamageDealt(damagingItem)) {
                 ProgressionUtil.setDamageDealt(damagingItem, (int) Math.ceil(ProgressionUtil.getDamageDealt(damagingItem) + event.getNewDamage()));
                 ProgressionUtil.progressCheck(damagingItem);
+                if (source.getEntity() instanceof Player player) advancementChecks(player, damagingItem);
             }
         }
         // Defender-side progression (damage taken)
@@ -39,15 +43,18 @@ public class ProgressionEventListener {
         if (mainHandItem.is(Tags.Items.TOOLS_SHIELD) && ProgressionUtil.canTrackDamageTaken(mainHandItem)) {
             ProgressionUtil.setDamageTaken(mainHandItem, (int) Math.ceil(ProgressionUtil.getDamageTaken(mainHandItem) + event.getBlockedDamage()));
             ProgressionUtil.progressCheck(mainHandItem);
+            if (entity instanceof Player player) advancementChecks(player, mainHandItem);
         }
         if (offhandItem.is(Tags.Items.TOOLS_SHIELD) && ProgressionUtil.canTrackDamageTaken(offhandItem)) {
             ProgressionUtil.setDamageTaken(offhandItem, (int) Math.ceil(ProgressionUtil.getDamageTaken(offhandItem) + event.getBlockedDamage()));
             ProgressionUtil.progressCheck(offhandItem);
+            if (entity instanceof Player player) advancementChecks(player, offhandItem);
         }
         entity.getArmorSlots().forEach(stack -> {
             if (ProgressionUtil.canTrackDamageTaken(stack)) {
                 ProgressionUtil.setDamageTaken(stack, (int) Math.ceil(ProgressionUtil.getDamageTaken(stack) + (event.getOriginalDamage() - event.getNewDamage())));
                 ProgressionUtil.progressCheck(stack);
+                if (entity instanceof Player player) advancementChecks(player, stack);
             }
         });
     }
@@ -55,18 +62,21 @@ public class ProgressionEventListener {
     // onLivingDeath: Entities Killed
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
-        ItemStack killingItem = event.getSource().getWeaponItem();
+        DamageSource source = event.getSource();
+        ItemStack killingItem = source.getWeaponItem();
         if (killingItem == null) return;
         if (EvolutionUtil.isEvolvable(killingItem)) {
             ProgressionUtil.setEntitiesKilled(killingItem, ProgressionUtil.getEntitiesKilled(killingItem) + 1);
             ProgressionUtil.progressCheck(killingItem);
+            if (source.getEntity() instanceof Player player) advancementChecks(player, killingItem);
         }
     }
 
     // onBlockBreak : Blocks Broken
     @SubscribeEvent
     public static void onBlockBreak(BlockEvent.BreakEvent event) {
-        ItemStack breakingItem = event.getPlayer().getMainHandItem();
+        Player player = event.getPlayer();
+        ItemStack breakingItem = player.getMainHandItem();
         BlockState brokenBlock = event.getState();
         if (breakingItem.isEmpty()) return;
         if (EvolutionUtil.isEvolvable(breakingItem)) {
@@ -85,6 +95,7 @@ public class ProgressionEventListener {
             }
             ProgressionUtil.setBlocksBroken(breakingItem, ProgressionUtil.getBlocksBroken(breakingItem) + score);
             ProgressionUtil.progressCheck(breakingItem);
+            advancementChecks(player, breakingItem);
         }
     }
 
@@ -102,6 +113,13 @@ public class ProgressionEventListener {
             default -> {
                 return true;
             }
+        }
+    }
+
+    private static void advancementChecks(Player player, ItemStack stack) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            Contents.TriggerTypes.REACH_MAX_POTENTIAL.get().trigger(serverPlayer, stack);
+            Contents.TriggerTypes.PERFECT_ITEM.get().trigger(serverPlayer, stack);
         }
     }
 }

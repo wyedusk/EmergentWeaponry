@@ -13,9 +13,11 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.IModBusEvent;
+import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = EmergentWeaponry.MODID)
@@ -74,6 +76,15 @@ public class EWDataGenerator implements IModBusEvent {
                 new EWRecipeProvider(
                         output,
                         provider
+                )
+        );
+        generator.addProvider(
+                event.includeServer(),
+                new AdvancementProvider(
+                        output,
+                        provider,
+                        event.getExistingFileHelper(),
+                        List.of(new EWAdvancementProvider())
                 )
         );
     }

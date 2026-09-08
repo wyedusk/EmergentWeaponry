@@ -1,8 +1,15 @@
 package dev.wyedusk.emergentweaponry.common.content;
 
+import com.mojang.serialization.MapCodec;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
+import dev.wyedusk.emergentweaponry.common.content.advancement.EvolveItemActionTrigger;
+import dev.wyedusk.emergentweaponry.common.content.advancement.ImproveItemActionTrigger;
+import dev.wyedusk.emergentweaponry.common.content.advancement.PerfectItemActionTrigger;
+import dev.wyedusk.emergentweaponry.common.content.advancement.ReachMaxPotentialActionTrigger;
 import dev.wyedusk.emergentweaponry.common.content.block.ModificationTableBlock;
 import dev.wyedusk.emergentweaponry.common.content.block.entity.ModificationTableBlockEntity;
+import dev.wyedusk.emergentweaponry.common.content.condition.AnyVanillaUpgradeEnabledCondition;
+import dev.wyedusk.emergentweaponry.common.content.condition.ImprovementFeatureEnabledCondition;
 import dev.wyedusk.emergentweaponry.common.content.entity.ThrownEssenceTrident;
 import dev.wyedusk.emergentweaponry.common.content.entity.ThrownFrostTrident;
 import dev.wyedusk.emergentweaponry.common.content.entity.ThrownInfernoTrident;
@@ -11,6 +18,7 @@ import dev.wyedusk.emergentweaponry.common.content.item.FrostTridentItem;
 import dev.wyedusk.emergentweaponry.common.content.item.InfernoTridentItem;
 import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
 import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
+import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -29,6 +37,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.neoforge.registries.datamaps.AdvancedDataMapType;
@@ -45,6 +54,8 @@ public class Contents {
     public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, EmergentWeaponry.MODID);
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, EmergentWeaponry.MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EmergentWeaponry.MODID);
+    public static final DeferredRegister<MapCodec<? extends ICondition>> CONDITION_CODECS = DeferredRegister.create(NeoForgeRegistries.Keys.CONDITION_CODECS, EmergentWeaponry.MODID);
+    public static final DeferredRegister<CriterionTrigger<?>> TRIGGER_TYPES = DeferredRegister.create(Registries.TRIGGER_TYPE, EmergentWeaponry.MODID);
 
     // Blocks
     public static class Blocks {
@@ -155,6 +166,34 @@ public class Contents {
             event.register(TRANSFORM_EVOLUTION_DATA_MAP);
         }
     }
+    // Conditions
+    public static class Conditions {
+        public static final Supplier<MapCodec<ImprovementFeatureEnabledCondition>> IMPROVEMENT_FEATURE_ENABLED = CONDITION_CODECS.register(
+                "improvement_feature_enabled", () -> ImprovementFeatureEnabledCondition.CODEC
+        );
+        public static final Supplier<MapCodec<AnyVanillaUpgradeEnabledCondition>> ANY_VANILLA_UPGRADE_ENABLED = CONDITION_CODECS.register(
+                "any_vanilla_upgrade_enabled", () -> AnyVanillaUpgradeEnabledCondition.CODEC
+        );
+
+        protected static void register(IEventBus modEventBus) { CONDITION_CODECS.register(modEventBus); }
+    }
+    // Trigger Types
+    public static class TriggerTypes {
+        public static final Supplier<ReachMaxPotentialActionTrigger> REACH_MAX_POTENTIAL = TRIGGER_TYPES.register(
+                "reach_max_potential", ReachMaxPotentialActionTrigger::new
+        );
+        public static final Supplier<EvolveItemActionTrigger> EVOLVE_ITEM = TRIGGER_TYPES.register(
+                "evolve_item", EvolveItemActionTrigger::new
+        );
+        public static final Supplier<ImproveItemActionTrigger> IMPROVE_ITEM = TRIGGER_TYPES.register(
+                "improve_item", ImproveItemActionTrigger::new
+        );
+        public static final Supplier<PerfectItemActionTrigger> PERFECT_ITEM = TRIGGER_TYPES.register(
+                "perfect_item", PerfectItemActionTrigger::new
+        );
+
+        protected static void register(IEventBus modEventBus) { TRIGGER_TYPES.register(modEventBus); }
+    }
     // Damage Types
     public static class DamageTypes {
         public static final ResourceKey<DamageType> ESSENCE_TRIDENT_RIPTIDE =
@@ -199,6 +238,8 @@ public class Contents {
         Items.register(modEventBus);
         Entities.register(modEventBus);
         DataComponents.register(modEventBus);
+        Conditions.register(modEventBus);
+        TriggerTypes.register(modEventBus);
         Menus.register(modEventBus);
         CreativeModeTabs.register(modEventBus);
 

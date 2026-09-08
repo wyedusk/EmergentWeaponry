@@ -1,0 +1,26 @@
+{
+  "parent": "emergentweaponry:reach_max_potential",
+  "criteria": {
+    "evolve_item": {
+      "trigger": "emergentweaponry:evolve_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.emergentweaponry.evolve_item.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:diamond_sword"
+    },
+    "title": {
+      "translate": "advancements.emergentweaponry.evolve_item.title"
+    }
+  },
+  "requirements": [
+    [
+      "evolve_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

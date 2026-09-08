@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "has_modification_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": "emergentweaponry:modification_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/stone.png",
+    "description": {
+      "translate": "advancements.emergentweaponry.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "emergentweaponry:modification_table"
+    },
+    "title": {
+      "translate": "advancements.emergentweaponry.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_modification_table"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

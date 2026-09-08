@@ -1,0 +1,30 @@
+{
+  "parent": "emergentweaponry:reach_max_potential",
+  "criteria": {
+    "improve_item": {
+      "trigger": "emergentweaponry:improve_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.emergentweaponry.improve_item.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "components": {
+        "minecraft:enchantment_glint_override": true
+      },
+      "count": 1,
+      "id": "minecraft:iron_sword"
+    },
+    "title": {
+      "translate": "advancements.emergentweaponry.improve_item.title"
+    }
+  },
+  "requirements": [
+    [
+      "improve_item"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

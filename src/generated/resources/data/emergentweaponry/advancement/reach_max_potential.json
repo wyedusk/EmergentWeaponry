@@ -1,0 +1,26 @@
+{
+  "parent": "emergentweaponry:root",
+  "criteria": {
+    "reach_max_potential": {
+      "trigger": "emergentweaponry:reach_max_potential"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.emergentweaponry.reach_max_potential.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:iron_sword"
+    },
+    "title": {
+      "translate": "advancements.emergentweaponry.reach_max_potential.title"
+    }
+  },
+  "requirements": [
+    [
+      "reach_max_potential"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
