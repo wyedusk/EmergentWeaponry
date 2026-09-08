@@ -1,7 +1,7 @@
 package dev.wyedusk.emergentweaponry.common.network.packet;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
+import dev.wyedusk.emergentweaponry.common.content.gui.menu.ModificationTableMenu;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;

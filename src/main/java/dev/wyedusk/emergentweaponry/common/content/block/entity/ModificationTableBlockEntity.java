@@ -2,7 +2,7 @@ package dev.wyedusk.emergentweaponry.common.content.block.entity;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
+import dev.wyedusk.emergentweaponry.common.content.gui.menu.ModificationTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;

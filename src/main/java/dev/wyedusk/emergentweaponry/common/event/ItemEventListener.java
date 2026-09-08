@@ -1,8 +1,8 @@
 package dev.wyedusk.emergentweaponry.common.event;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ProgressionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.ProgressionUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;

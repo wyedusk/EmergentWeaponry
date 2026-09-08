@@ -2,7 +2,7 @@ package dev.wyedusk.emergentweaponry.common.event;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierDataHolder;
 import dev.wyedusk.emergentweaponry.common.network.packet.S2CTierDataPacket;
 import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,6 +14,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 @EventBusSubscriber(modid = EmergentWeaponry.MODID)
 public class PlayerEventListener {
     @SubscribeEvent
+    @SuppressWarnings({"OptionalGetWithoutIsPresent", "ConstantConditions"})
     public static void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             var server = event.getEntity().getServer();

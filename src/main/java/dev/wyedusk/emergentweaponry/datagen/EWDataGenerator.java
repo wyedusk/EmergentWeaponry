@@ -7,6 +7,8 @@ import dev.wyedusk.emergentweaponry.datagen.server.*;
 import dev.wyedusk.emergentweaponry.datagen.server.datapack_registries.EWDataMapProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.datapack_registries.EWDatapackBuiltinEntriesProvider;
 import dev.wyedusk.emergentweaponry.datagen.server.loot_tables.EWLootTableProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.tags.EWBlockTagsProvider;
+import dev.wyedusk.emergentweaponry.datagen.server.tags.EWItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

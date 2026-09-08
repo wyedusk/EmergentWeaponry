@@ -1,7 +1,7 @@
 package dev.wyedusk.emergentweaponry.common.network.packet;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierDataHolder;
 import dev.wyedusk.emergentweaponry.common.network.cache.client.ClientTierDataCache;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;

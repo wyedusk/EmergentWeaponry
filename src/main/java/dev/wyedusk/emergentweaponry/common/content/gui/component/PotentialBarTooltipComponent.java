@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.common.gui.component;
+package dev.wyedusk.emergentweaponry.common.content.gui.component;
 
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 

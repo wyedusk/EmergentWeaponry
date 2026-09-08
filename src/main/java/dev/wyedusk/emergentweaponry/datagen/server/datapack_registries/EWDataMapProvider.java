@@ -1,9 +1,9 @@
 package dev.wyedusk.emergentweaponry.datagen.server.datapack_registries;
 
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionFlag;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TransformEvolutionInstance;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TransformEvolutionData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.flag.TransformEvolutionFlag;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TransformEvolutionInstance;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;

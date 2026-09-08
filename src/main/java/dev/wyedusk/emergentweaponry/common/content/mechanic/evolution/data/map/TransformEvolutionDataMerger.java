@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
+package dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map;
 
 import com.mojang.datafixers.util.Either;
 import net.minecraft.core.Registry;

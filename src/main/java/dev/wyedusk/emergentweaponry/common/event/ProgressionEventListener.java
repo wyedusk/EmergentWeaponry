@@ -2,8 +2,8 @@ package dev.wyedusk.emergentweaponry.common.event;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ProgressionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.ProgressionUtil;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;

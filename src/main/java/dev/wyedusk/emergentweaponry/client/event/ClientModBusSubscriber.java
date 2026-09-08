@@ -1,13 +1,13 @@
 package dev.wyedusk.emergentweaponry.client.event;
 
-import dev.wyedusk.emergentweaponry.client.gui.component.ClientPotentialBarTooltipComponent;
-import dev.wyedusk.emergentweaponry.client.gui.screen.ModificationTableMenuScreen;
+import dev.wyedusk.emergentweaponry.client.rendering.gui.component.ClientPotentialBarTooltipComponent;
+import dev.wyedusk.emergentweaponry.client.rendering.gui.screen.ModificationTableMenuScreen;
 import dev.wyedusk.emergentweaponry.client.rendering.EWBlockEntityWithoutLevelRenderer;
 import dev.wyedusk.emergentweaponry.client.rendering.entity.ThrownTridentRenderer;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.item.base.BaseTridentItem;
-import dev.wyedusk.emergentweaponry.common.gui.component.PotentialBarTooltipComponent;
+import dev.wyedusk.emergentweaponry.common.content.gui.component.PotentialBarTooltipComponent;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;

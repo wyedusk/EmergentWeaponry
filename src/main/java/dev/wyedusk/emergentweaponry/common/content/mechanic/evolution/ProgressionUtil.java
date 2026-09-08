@@ -1,7 +1,10 @@
-package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
+package dev.wyedusk.emergentweaponry.common.content.mechanic.evolution;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionLoopData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierData;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.Tags;

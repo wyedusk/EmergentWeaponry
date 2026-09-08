@@ -1,6 +1,6 @@
-package dev.wyedusk.emergentweaponry.client.gui.component;
+package dev.wyedusk.emergentweaponry.client.rendering.gui.component;
 
-import dev.wyedusk.emergentweaponry.common.gui.component.PotentialBarTooltipComponent;
+import dev.wyedusk.emergentweaponry.common.content.gui.component.PotentialBarTooltipComponent;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;

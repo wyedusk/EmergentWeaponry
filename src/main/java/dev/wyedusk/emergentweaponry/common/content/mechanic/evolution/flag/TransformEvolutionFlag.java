@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
+package dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.flag;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.util.StringRepresentable;

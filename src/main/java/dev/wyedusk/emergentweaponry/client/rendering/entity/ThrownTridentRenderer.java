@@ -33,7 +33,6 @@ public class ThrownTridentRenderer extends EntityRenderer<BaseThrownTrident> {
         stack.pushPose();
         stack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(p_116113_, trident.yRotO, trident.getYRot()) - 90.0F));
         stack.mulPose(Axis.ZP.rotationDegrees(Mth.lerp(p_116113_, trident.xRotO, trident.getXRot()) + 90.0F));
-        //stack.scale(1.0F, -1.0F, -1.0F);
         VertexConsumer vertexconsumer = ItemRenderer.getFoilBufferDirect(
                 buffer, this.model.renderType(this.texture), false, trident.isFoil()
         );

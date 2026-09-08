@@ -2,8 +2,12 @@ package dev.wyedusk.emergentweaponry.mixin.common;
 
 import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.gui.component.StylisedComponents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.*;
+import dev.wyedusk.emergentweaponry.common.content.gui.component.StylisedComponents;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.*;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ItemEvolutionData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionLoopData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierDataHolder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;

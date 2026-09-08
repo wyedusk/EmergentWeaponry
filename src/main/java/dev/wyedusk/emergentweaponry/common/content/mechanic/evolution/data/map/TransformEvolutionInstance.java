@@ -1,7 +1,8 @@
-package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
+package dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.flag.TransformEvolutionFlag;
 import net.minecraft.resources.ResourceLocation;
 
 /**

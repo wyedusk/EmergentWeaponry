@@ -2,8 +2,8 @@ package dev.wyedusk.emergentweaponry.datagen.server.datapack_registries;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierDataHolder;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.TierData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierDataHolder;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierData;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;

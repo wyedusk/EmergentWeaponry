@@ -2,9 +2,9 @@ package dev.wyedusk.emergentweaponry.client.event;
 
 import com.mojang.datafixers.util.Either;
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
-import dev.wyedusk.emergentweaponry.common.gui.component.PotentialBarTooltipComponent;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ProgressionUtil;
+import dev.wyedusk.emergentweaponry.common.content.gui.component.PotentialBarTooltipComponent;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.ProgressionUtil;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.Style;

@@ -2,8 +2,8 @@ package dev.wyedusk.emergentweaponry.common.network.packet;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.gui.menu.ModificationTableMenu;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;

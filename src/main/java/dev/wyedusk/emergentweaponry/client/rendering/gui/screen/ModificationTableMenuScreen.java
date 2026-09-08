@@ -1,12 +1,12 @@
-package dev.wyedusk.emergentweaponry.client.gui.screen;
+package dev.wyedusk.emergentweaponry.client.rendering.gui.screen;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.config.ServerConfig;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
-import dev.wyedusk.emergentweaponry.common.content.menu.ModificationTableMenu;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ItemEvolutionData;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.ProgressionUtil;
+import dev.wyedusk.emergentweaponry.common.content.gui.menu.ModificationTableMenu;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ItemEvolutionData;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.ProgressionUtil;
 import dev.wyedusk.emergentweaponry.common.network.packet.C2SModifyItemPacket;
 import dev.wyedusk.emergentweaponry.common.util.ItemStatUtil;
 import net.minecraft.client.gui.GuiGraphics;

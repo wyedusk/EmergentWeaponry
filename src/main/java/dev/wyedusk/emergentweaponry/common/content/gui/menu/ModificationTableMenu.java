@@ -1,9 +1,9 @@
-package dev.wyedusk.emergentweaponry.common.content.menu;
+package dev.wyedusk.emergentweaponry.common.content.gui.menu;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.block.entity.ModificationTableBlockEntity;
-import dev.wyedusk.emergentweaponry.common.mechanic.evolution.EvolutionUtil;
+import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.EvolutionUtil;
 import dev.wyedusk.emergentweaponry.common.network.packet.S2CSendModificationsPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;

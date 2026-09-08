@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.common.mechanic.evolution;
+package dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

@@ -1,4 +1,4 @@
-package dev.wyedusk.emergentweaponry.datagen.server;
+package dev.wyedusk.emergentweaponry.datagen.server.tags;
 
 import dev.wyedusk.emergentweaponry.common.EmergentWeaponry;
 import dev.wyedusk.emergentweaponry.common.content.Contents;

@@ -1,12 +1,10 @@
-package dev.wyedusk.emergentweaponry.common.gui.component;
+package dev.wyedusk.emergentweaponry.common.content.gui.component;
 
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-
-import java.awt.*;
 
 public class StylisedComponents {
     public static Component getMaxImprovementStyleTextComponent(String plainText) {
