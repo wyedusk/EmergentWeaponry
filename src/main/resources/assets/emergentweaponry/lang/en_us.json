@@ -7,6 +7,13 @@
 
   "block.emergentweaponry.modification_table": "Modification Table",
 
+  "tooltip.emergentweaponry.inferno_trident.attack_special": "This weapon sets its target on fire.",
+  "tooltip.emergentweaponry.inferno_trident.riptide_special": "Riptide can be while on fire, in lava, or in the Nether.",
+  "tooltip.emergentweaponry.frost_trident.attack_special": "This weapon freezes its target for a short time.",
+  "tooltip.emergentweaponry.frost_trident.riptide_special": "Riptide can be while frozen, in rain, or in water.",
+  "tooltip.emergentweaponry.essence_trident.attack_special": "%s%% of this weapon's damage is converted into life-steal.",
+  "tooltip.emergentweaponry.essence_trident.riptide_special": "Riptide can be used at any time, but drains XP or health.",
+
   "container.emergentweaponry.modification_table": "Modification Table",
 
   "death.attack.emergentweaponry.essence_trident_riptide": "%1$s had their life drained by their Essence Trident",
