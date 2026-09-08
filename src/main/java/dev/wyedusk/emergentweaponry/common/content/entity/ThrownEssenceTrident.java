@@ -2,6 +2,7 @@ package dev.wyedusk.emergentweaponry.common.content.entity;
 
 import dev.wyedusk.emergentweaponry.common.content.Contents;
 import dev.wyedusk.emergentweaponry.common.content.entity.base.BaseThrownTrident;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -21,10 +22,5 @@ public class ThrownEssenceTrident extends BaseThrownTrident {
     @Override
     protected @NotNull ItemStack getDefaultPickupItem() {
         return new ItemStack(Contents.Items.ESSENCE_TRIDENT.get());
-    }
-
-    @Override
-    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
-        // todo: 20% lifesteal
     }
 }
