@@ -35,5 +35,7 @@
   "emergentweaponry.configuration.allowVanillaArmorUpgrading": "Allow Vanilla Armor Upgrading",
   "emergentweaponry.configuration.improving": "Improving",
   "emergentweaponry.configuration.allowImprovementFeature": "Allow Improvement Feature",
-  "emergentweaponry.configuration.maxImprovementTier": "Max Improvement Tier"
+  "emergentweaponry.configuration.maxImprovementTier": "Max Improvement Tier",
+  "emergentweaponry.configuration.weapons": "Weapons",
+  "emergentweaponry.configuration.essenceTridentLifestealPercentage": "Essence Trident Life-steal Percentage"
 }
