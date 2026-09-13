@@ -8,6 +8,7 @@ import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.compo
 import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionData;
 import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.component.ProgressionLoopData;
 import dev.wyedusk.emergentweaponry.common.content.mechanic.evolution.data.map.TierDataHolder;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.PatchedDataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -90,6 +92,7 @@ public abstract class ItemStackMixin {
     // Custom stylisation for maximum Improvement tier
     @Inject(method = "getHoverName", at = @At("RETURN"), cancellable = true)
     public void emergentweaponry$getHoverName(CallbackInfoReturnable<Component> cir) {
+        if (Minecraft.getInstance().getCurrentServer() == null) return;
         ItemStack instance = (ItemStack) (Object) this;
         boolean isMaxImprovement = EvolutionUtil.getImprovementTier(instance) == ServerConfig.MAX_IMPROVEMENT_TIER.getAsInt()
                 && EvolutionUtil.getPotential(instance) >= EvolutionUtil.getMaxPotential(instance);
